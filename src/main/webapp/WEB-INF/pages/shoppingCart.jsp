@@ -1,3 +1,4 @@
+<%@ page import="cupcakeMaster.infrastructure.DBTopRepository" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <div class="row">
     <h1>Velkommen ombord</h1>
@@ -10,7 +11,7 @@
 </div>
 
 <%
-    // request.setAttribute("bottoms", LogicFacade.getAllBottoms());
+    //request.setAttribute("bottoms", );
     // request.setAttribute("toppings", LogicFacade.getAllToppings());
 %>
 
@@ -50,15 +51,20 @@
 
 
         <div class="col-md-4">
+            ${requestScope.topping}
             <!-- Dropdown toppings -->
             <div class="form-group">
                 <label for="selectTopping">Select Cupcake topping</label>
                 <select class="form-control" name="topping" id="selectTopping">
-                    <c:forEach var="topping" items="${toppings}">
-                        <option value="${topping.name}">${topping.name}</option>
+                    <c:forEach var="topping" items="${requestScope.topping}">
+                        <option value="${topping.name}">
+                                ${topping.name}
+                        </option>
                     </c:forEach>
+
                 </select>
             </div>
+
         </div>
 
     </div>

@@ -1,5 +1,8 @@
 package web.pages;
 
+import cupcakeMaster.domain.order.DBException;
+import cupcakeMaster.infrastructure.DBTopRepository;
+import cupcakeMaster.infrastructure.Database;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -15,6 +18,13 @@ public class ShoppingCart extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        Database db = new Database();
+        DBTopRepository topRepository = new DBTopRepository(db);
+        try {
+            req.setAttribute("topping", topRepository.findAll());
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp );
 
     }
