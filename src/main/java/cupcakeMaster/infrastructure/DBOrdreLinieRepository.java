@@ -6,26 +6,26 @@ import cupcakeMaster.domain.shoppingList.ShoppingList;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class DBOrderlistRepository implements OrderListRepository {
+public class DBOrdreLinieRepository implements OrdreLinieRepository {
 
 
     private final Database db;
 
-    public DBOrderlistRepository(Database db) {
+    public DBOrdreLinieRepository(Database db) {
         this.db = db;
     }
 
     @Override
-    public Iterable<OrderList> findAll() {
+    public Iterable<OrdreLinie> findAll() {
         return null;
     }
 
     @Override
-    public ShoppingList find(int id) throws NoOrderListExist {
+    public OrdreLinie find(int id) throws NoOrdreLinieExist {
         try (
                 Connection conn = db.connect()) {
         } catch (SQLException throwables) {
-            throw  new NoOrderListExist();
+            throw  new NoOrdreLinieExist();
         }
         return null;
     }

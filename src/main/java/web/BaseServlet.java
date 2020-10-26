@@ -1,7 +1,7 @@
 package web;
 
 import cupcakeMaster.api.Cupcake;
-import cupcakeMaster.infrastructure.DBOrderlistRepository;
+import cupcakeMaster.infrastructure.DBOrdreLinieRepository;
 import cupcakeMaster.infrastructure.Database;
 
 import javax.servlet.ServletException;
@@ -20,7 +20,7 @@ public class BaseServlet extends HttpServlet {
 
     private static Cupcake createCupcake(){
         Database db = new Database();
-        return new Cupcake(new DBOrderlistRepository(db));
+        return new Cupcake(new DBOrdreLinieRepository(db));
     }
 
 

@@ -8,6 +8,8 @@ public class Database {
 
     private final String URL = "jdbc:mysql://localhost:3306/cupcake?localTimezone=GMT+2";
     private final String USER = "cupcake";
+    private final String PASSWORD="cupcake";
+
 
     public Database() {
         try {
@@ -18,7 +20,7 @@ public class Database {
     }
 
     public Connection connect() throws SQLException {
-        return DriverManager.getConnection(URL, USER, null);
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
 

@@ -6,9 +6,9 @@ import cupcakeMaster.domain.order.*;
 public class Cupcake {
 
     private static final String VERSION = "0.1";
-    private final OrderListRepository orderlists;
+    private final OrdreLinieRepository orderlists;
 
-    public Cupcake(OrderListRepository orderlists) {
+    public Cupcake(OrdreLinieRepository orderlists) {
         this.orderlists = orderlists;
     }
 
