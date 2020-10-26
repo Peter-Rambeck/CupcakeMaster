@@ -1,9 +1,5 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.NoOrderListExist;
-import cupcakeMaster.domain.order.OrderList;
-import cupcakeMaster.domain.shoppingList.NoShoppingListExist;
-import cupcakeMaster.domain.shoppingList.ShoppingList;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
