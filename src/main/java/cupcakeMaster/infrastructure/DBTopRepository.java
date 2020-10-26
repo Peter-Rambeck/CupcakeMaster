@@ -15,8 +15,8 @@ public class DBTopRepository implements TopRepository {
         this.db = db;
     }
     @Override
-    public Iterable<Top> findAll() throws DBException {
-            List<Top> topList = null;
+    public ArrayList<Top> findAll() throws DBException {
+            ArrayList<Top> topList = new ArrayList<>();
             try {
                 Connection con = db.connect();
                 String SQL = "SELECT * FROM topping";
