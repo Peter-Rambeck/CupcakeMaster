@@ -20,8 +20,9 @@ public class ShoppingCart extends BaseServlet {
             throws ServletException, IOException {
         Database db = new Database();
         DBTopRepository topRepository = new DBTopRepository(db);
-        try {
+                try {
             req.setAttribute("topping", topRepository.findAll());
+            req.setAttribute("bottom",topRepository.findAll());
         } catch (DBException e) {
             e.printStackTrace();
         }
