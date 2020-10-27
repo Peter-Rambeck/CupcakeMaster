@@ -1,6 +1,7 @@
 package web.pages;
 
 import cupcakeMaster.domain.order.DBException;
+import cupcakeMaster.infrastructure.DBBottomRepository;
 import cupcakeMaster.infrastructure.DBTopRepository;
 import cupcakeMaster.infrastructure.Database;
 import web.BaseServlet;
@@ -20,9 +21,10 @@ public class ShoppingCart extends BaseServlet {
             throws ServletException, IOException {
         Database db = new Database();
         DBTopRepository topRepository = new DBTopRepository(db);
+        DBBottomRepository bottomRepository=new DBBottomRepository(db);
                 try {
             req.setAttribute("topping", topRepository.findAll());
-            req.setAttribute("bottom",topRepository.findAll());
+            req.setAttribute("bottom",bottomRepository.findAll());
         } catch (DBException e) {
             e.printStackTrace();
         }
