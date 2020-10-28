@@ -1,16 +1,35 @@
 package cupcakeMaster.domain.order;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Ordre {
     private int ordre_id;
     private LocalDate date;
     private Customer customer;
+    private ArrayList <OrdreLinie> ordreLinier;
 
     public Ordre(LocalDate date, Customer customer) {
 
         this.date = date;
         this.customer = customer;
+        this.ordreLinier = new ArrayList<>();
+    }
+
+    public Ordre(int ordre_id, LocalDate date, Customer customer) {
+        this.ordre_id = ordre_id;
+        this.date = date;
+        this.customer = customer;
+        this.ordreLinier = new ArrayList<>();
+
+    }
+
+    public ArrayList<OrdreLinie> getOrdreLinier() {
+        return ordreLinier;
+    }
+
+    public void addOrdrelinie (OrdreLinie ordreLinie){
+        this.ordreLinier.add(ordreLinie);
     }
 
     public int getOrdre_id() {

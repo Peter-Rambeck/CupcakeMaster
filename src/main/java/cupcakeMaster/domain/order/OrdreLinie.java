@@ -11,10 +11,18 @@ public class OrdreLinie {
     private  Bottom bottom;
 
 
-    public OrdreLinie(int quantity, int sum, Top top, Bottom bottom) {
+    public OrdreLinie(int quantity, Top top, Bottom bottom) {
 
         this.quantity = quantity;
         this.ordrelinieSum = (top.getPrice()+bottom.getPrice())*quantity;
+        this.top = top;
+        this.bottom = bottom;
+    }
+
+    public OrdreLinie(int ordrelinie_id, int quantity, int ordrelinieSum, Top top, Bottom bottom) {
+        this.ordrelinie_id = ordrelinie_id;
+        this.quantity = quantity;
+        this.ordrelinieSum = ordrelinieSum;
         this.top = top;
         this.bottom = bottom;
     }
