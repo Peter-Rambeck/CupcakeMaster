@@ -7,8 +7,8 @@ public class Customer {
     private String password;
     private int saldo;
 
-    public Customer(int customer_id, String email, String username, String password) {
-        Customer_id = customer_id;
+    public Customer(String email, String username, String password) {
+
         this.email = email;
         this.password = password;
         this.saldo = saldo;

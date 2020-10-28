@@ -7,8 +7,8 @@ public class Ordre {
     private LocalDate date;
     private Customer customer;
 
-    public Ordre(int ordre_id, LocalDate date, Customer customer) {
-        this.ordre_id = ordre_id;
+    public Ordre(LocalDate date, Customer customer) {
+
         this.date = date;
         this.customer = customer;
     }

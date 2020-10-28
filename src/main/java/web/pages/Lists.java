@@ -16,7 +16,7 @@ public class Lists extends BaseServlet {
             throws ServletException, IOException {
         setup(req, resp);
         if (req.getPathInfo() == null) {
-            render("FourThings+: Create a new list", "/WEB-INF/pages/createlist.jsp", req, resp);
+            render("Hejsa", "/WEB-INF/pages/shoppingCard.jsp", req, resp);
         } else {
             int orderlistid = Integer.parseInt(req.getPathInfo().substring(1));
             // log(req, "Accessing Order List " + orderlistid);
