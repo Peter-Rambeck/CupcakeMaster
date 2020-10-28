@@ -16,8 +16,8 @@ public class DBTopRepository implements TopRepository {
     }
     @Override
     public Iterable <Top> findAll() throws DBException {
-            Iterable <Top> topList = new ArrayList<>();
-            /*
+            ArrayList <Top> topList = new ArrayList<>();
+
             try {
                 Connection con = db.connect();
                 String SQL = "SELECT * FROM topping";
@@ -37,13 +37,6 @@ public class DBTopRepository implements TopRepository {
             } catch (SQLException ex) {
                 throw new DBException(ex.getMessage());
             }
-
-             */
-            Top top1 = new Top(1, "Marmelade", 10 );
-            Top top2 = new Top(2, "Navn", 10 );
-            ((ArrayList<Top>) topList).add(top1);
-            ((ArrayList<Top>) topList).add(top2);
-        System.out.println(topList);
             return topList;
     }
 

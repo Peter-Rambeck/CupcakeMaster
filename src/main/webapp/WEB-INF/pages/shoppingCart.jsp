@@ -1,5 +1,8 @@
-<%@ page import="cupcakeMaster.infrastructure.DBTopRepository" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="cupcakeMaster.infrastructure.DBTopRepository" %>
+
 <div class="row">
     <h1>Velkommen ombord</h1>
     <br>
@@ -42,8 +45,10 @@
             <div class="form-group">
                 <label for="selectBottom">Select Cupcake bottom</label>
                 <select class="form-control" name="bottom" id="selectBottom">
-                    <c:forEach var="bottom" items="${bottoms}">
-                        <option value="${bottom.name}">${bottom.name}</option>
+                    <c:forEach  items="${requestScope.bottom}" var="bot">
+                        <option value="${bot}">
+                                ${bot.name} ${bot.price} kr
+                        </option>
                     </c:forEach>
                 </select>
             </div>
@@ -51,14 +56,14 @@
 
 
         <div class="col-md-4">
-            ${requestScope.topping}
+
             <!-- Dropdown toppings -->
             <div class="form-group">
                 <label for="selectTopping">Select Cupcake topping</label>
                 <select class="form-control" name="topping" id="selectTopping">
-                    <c:forEach var="topping" items="${requestScope.topping}">
-                        <option value="${topping.name}">
-                                ${topping.name}
+                    <c:forEach  items="${requestScope.topping}" var="top">
+                        <option value="${top}">
+                                ${top.name} ${top.price} kr
                         </option>
                     </c:forEach>
 
@@ -111,10 +116,10 @@
         ${requestScope.number}
     </div>
     <div class="col-md-2">
-        ${requestScope.bottom}
+        ${requestScope.number}
     </div>
     <div class="col-md-2">
-        ${requestScope.topping}
+        ${requestScope.number}
     </div>
     <div class="col-md-2">
         N/A
