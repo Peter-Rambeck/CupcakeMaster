@@ -1,6 +1,6 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.DBException;
+import cupcakeMaster.domain.order.*;
 import cupcakeMaster.infrastructure.DBBottomRepository;
 import cupcakeMaster.infrastructure.DBTopRepository;
 import cupcakeMaster.infrastructure.Database;
@@ -29,6 +29,23 @@ public class ShoppingCart extends BaseServlet {
             e.printStackTrace();
         }
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp );
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String number = req.getParameter("number");
+        String topping = req.getParameter("topping");
+        System.out.println(topping + " 1");
+        String bottom = req.getParameter("bottom");
+
+        Database db = new Database();
+        DBTopRepository topRepository = new DBTopRepository(db);
+        DBBottomRepository bottomRepository=new DBBottomRepository(db);
+
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
 
     }
 }

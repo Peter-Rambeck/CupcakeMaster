@@ -46,7 +46,7 @@
                 <label for="selectBottom">Select Cupcake bottom</label>
                 <select class="form-control" name="bottom" id="selectBottom">
                     <c:forEach  items="${requestScope.bottom}" var="bot">
-                        <option value="${bot}">
+                        <option value="${bot.id}">
                                 ${bot.name} ${bot.price} kr
                         </option>
                     </c:forEach>
@@ -62,7 +62,7 @@
                 <label for="selectTopping">Select Cupcake topping</label>
                 <select class="form-control" name="topping" id="selectTopping">
                     <c:forEach  items="${requestScope.topping}" var="top">
-                        <option value="${top}">
+                        <option value="${top.id}">
                                 ${top.name} ${top.price} kr
                         </option>
                     </c:forEach>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="text-right">
-        <button type="submit" href="" class="btn btn-primary">Go to cart</button>
+        <button type="submit" class="btn btn-primary">Add to order</button>
     </div>
 
 </form>
@@ -111,15 +111,16 @@
 </div>
 <hr>
 
+
 <div class="row">
     <div class="col-md-2">
-        ${requestScope.number}
+        N/A
     </div>
     <div class="col-md-2">
-        ${requestScope.number}
+        ${requestScope.l}
     </div>
     <div class="col-md-2">
-        ${requestScope.number}
+        N/A
     </div>
     <div class="col-md-2">
         N/A
