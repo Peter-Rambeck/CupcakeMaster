@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CupcakeMaster" options="-endorseddirs C:\Users\PC\Documents\skole\Kode\semester2\Peter\CupcakeMaster\target/endorsed" />
+      <module name="CupcakeMaster" options="" />
     </option>
   </component>
 </project>
