@@ -1,7 +1,5 @@
 package cupcakeMaster.api;
-
 import cupcakeMaster.domain.order.*;
-
 
 public class Cupcake {
 
@@ -9,6 +7,7 @@ public class Cupcake {
     private final OrdreLinieRepository orderlists;
     private final BottomRepository bottoms;
     private final TopRepository tops;
+    private int parseInt;
 
     public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops) {
         this.orderlists = orderlists;
@@ -37,6 +36,7 @@ public class Cupcake {
 }
 
     public Top findTop(int parseInt) throws DBException {
+        this.parseInt = parseInt;
         return tops.find(parseInt);
     }
 
