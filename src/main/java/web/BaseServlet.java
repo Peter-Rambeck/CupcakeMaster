@@ -19,7 +19,7 @@ public class BaseServlet extends HttpServlet {
     protected static final Cupcake api;
 
     static {
-        api = createEmptyCupcake();
+        api = createCupcake();
     }
 
     private static Cupcake createCupcake(){

@@ -35,7 +35,6 @@ public class ShoppingCart extends BaseServlet {
         req.setAttribute("topping", api.allTops());
         req.setAttribute("bottom", api.allBottoms());
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
-
     }
 
     @Override

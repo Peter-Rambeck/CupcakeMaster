@@ -117,13 +117,13 @@
             ${ordreLinje.quantity}
         </div>
         <div class="col-md-2">
-            ${ordreLinje.top}
+            ${ordreLinje.bottom.name}
         </div>
         <div class="col-md-2">
-            ${ordreLinje.bottom}
+            ${ordreLinje.top.name}
         </div>
         <div class="col-md-2">
-            N/A
+            ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
         </div>
         <div class="col-md-2">
             N/A

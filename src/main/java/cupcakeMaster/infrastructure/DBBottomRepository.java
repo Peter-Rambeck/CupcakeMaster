@@ -41,6 +41,24 @@ public class DBBottomRepository implements BottomRepository{
 
     @Override
     public Bottom find(int parseInt) throws DBException {
-        throw new UnsupportedOperationException("");
+        try {
+            Connection con = db.connect();
+            String SQL = "SELECT * FROM bottom WHERE bottom_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,parseInt);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+
+                int bottom_id = rs.getInt("bottom_id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                Bottom bottom = new Bottom(bottom_id, name, price);
+               return bottom;
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return null;
     }
 }

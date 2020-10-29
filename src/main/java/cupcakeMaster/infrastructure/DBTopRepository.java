@@ -42,7 +42,25 @@ public class DBTopRepository implements TopRepository {
 
     @Override
     public Top find(int parseInt) throws DBException {
-        throw new UnsupportedOperationException();
+
+
+        try {
+            Connection con = db.connect();
+            String SQL = "SELECT * FROM topping WHERE topping_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,parseInt);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int topping_id = rs.getInt("topping_id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                Top top = new Top(topping_id, name,price);
+                return top;
+            }
+        } catch (SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return null;
     }
 
 
