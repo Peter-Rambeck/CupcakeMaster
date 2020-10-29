@@ -40,6 +40,11 @@ public class DBTopRepository implements TopRepository {
             return topList;
     }
 
+    @Override
+    public Top find(int parseInt) throws DBException {
+        throw new UnsupportedOperationException();
+    }
+
 
 }
 

@@ -38,4 +38,9 @@ public class DBBottomRepository implements BottomRepository{
         }
         return bottomList;
     }
+
+    @Override
+    public Bottom find(int parseInt) throws DBException {
+        throw new UnsupportedOperationException("");
+    }
 }

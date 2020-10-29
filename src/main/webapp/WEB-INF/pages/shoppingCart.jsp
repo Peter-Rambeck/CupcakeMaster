@@ -111,28 +111,28 @@
 </div>
 <hr>
 
-
-<div class="row">
-    <div class="col-md-2">
-        N/A
+<c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje">
+    <div class="row">
+        <div class="col-md-2">
+            ${ordreLinje.quantity}
+        </div>
+        <div class="col-md-2">
+            ${ordreLinje.top}
+        </div>
+        <div class="col-md-2">
+            ${ordreLinje.bottom}
+        </div>
+        <div class="col-md-2">
+            N/A
+        </div>
+        <div class="col-md-2">
+            N/A
+        </div>
+        <div class="col-md-2">
+            N/A
+        </div>
     </div>
-    <div class="col-md-2">
-        ${requestScope.l}
-    </div>
-    <div class="col-md-2">
-        N/A
-    </div>
-    <div class="col-md-2">
-        N/A
-    </div>
-    <div class="col-md-2">
-        N/A
-    </div>
-    <div class="col-md-2">
-        N/A
-    </div>
-</div>
-
+</c:forEach>
 <hr>
 
 
