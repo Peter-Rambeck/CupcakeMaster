@@ -22,7 +22,7 @@ public class DBBottomRepository implements BottomRepository{
             String SQL = "SELECT * FROM bottom";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
-            System.out.println("Før while");
+
             while (rs.next()) {
 
                 if (bottomList == null) {

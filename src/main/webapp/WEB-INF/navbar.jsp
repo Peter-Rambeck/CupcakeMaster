@@ -1,6 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}">Cupcake</a>
     <a class="navbar-brand" href="">Kunde</a>
+    <a class="navbar-brand" href="">Login
+
+
+
+    </a>
+
+
 
     <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">

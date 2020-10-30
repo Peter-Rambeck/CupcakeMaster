@@ -1,5 +1,7 @@
 package cupcakeMaster.domain.order;
 
+import cupcakeMaster.domain.order.customer.Customer;
+
 import java.time.LocalDate;
 
 public class Ordre {
