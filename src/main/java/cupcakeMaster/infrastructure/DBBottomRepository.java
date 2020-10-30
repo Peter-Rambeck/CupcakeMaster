@@ -22,7 +22,7 @@ public class DBBottomRepository implements BottomRepository{
             String SQL = "SELECT * FROM bottom";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
-            System.out.println("Før while");
+
             while (rs.next()) {
 
                 if (bottomList == null) {
@@ -38,5 +38,28 @@ public class DBBottomRepository implements BottomRepository{
             throw new DBException(ex.getMessage());
         }
         return bottomList;
+    }
+
+    @Override
+    public Bottom find(int parseInt) throws DBException {
+        try {
+            Connection con = db.connect();
+            String SQL = "SELECT * FROM bottom WHERE bottom_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,parseInt);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+
+                int bottom_id = rs.getInt("bottom_id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                Bottom bottom = new Bottom(bottom_id, name, price);
+               return bottom;
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return null;
     }
 }

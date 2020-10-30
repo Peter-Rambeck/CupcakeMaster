@@ -1,5 +1,8 @@
 package web.pages;
 
+import cupcakeMaster.domain.order.Bottom;
+import cupcakeMaster.domain.order.OrdreLinie;
+import cupcakeMaster.domain.order.Top;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,10 @@ import java.io.IOException;
 public class Lists extends BaseServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+    /*
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         setup(req, resp);
@@ -27,16 +34,37 @@ public class Lists extends BaseServlet {
         }
     }
 
+     */
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        setup(req, resp);
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
-        if (name == null || name.equals("")) {
-            resp.sendError(400, "Expected a name of the shopping list");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
+        String bottom = req.getParameter("bottom");
+        System.out.println(bottom);
+
+
+        // req.setAttribute("number", number);
+        // req.setAttribute("bottom", bottom);
+        // req.setAttribute("topping", topping);
+        // System.out.println(topping + "2");
+
+
+
+        // OrdreLinie ordreLinie = new OrdreLinie();
+
+        //render("Cupcake order: ", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
+
+
+        if (bottom == null || bottom.equals("")) {
+            resp.sendError(400, "Please submit number of cupcakes");
         } else {
+            req.setAttribute("error", "Unknown user, please try again");
+            req.getRequestDispatcher("/shoppingCart.jsp").forward(req, resp);
             // OrderList list = api.createOrderList(name, description);
             // resp.sendRedirect(req.getContextPath() + "/lists/" + list.getId());
         }
+
     }
+
+
 }

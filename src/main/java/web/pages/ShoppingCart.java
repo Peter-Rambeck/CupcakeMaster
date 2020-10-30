@@ -1,6 +1,6 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.DBException;
+import cupcakeMaster.domain.order.*;
 import cupcakeMaster.infrastructure.DBBottomRepository;
 import cupcakeMaster.infrastructure.DBTopRepository;
 import cupcakeMaster.infrastructure.Database;
@@ -12,23 +12,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/shoppingCart")
 public class ShoppingCart extends BaseServlet {
 
+    public static List<OrdreLinie> getShoppingCart(HttpServletRequest req) {
+        var s = req.getSession();
+        List<OrdreLinie> shoppingCart = (List<OrdreLinie>) s.getAttribute("shoppingCart");
+        if (shoppingCart == null) {
+            shoppingCart = new ArrayList<>();
+            s.setAttribute("shoppingCart", shoppingCart);
+        }
+        return shoppingCart;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Database db = new Database();
-        DBTopRepository topRepository = new DBTopRepository(db);
-        DBBottomRepository bottomRepository=new DBBottomRepository(db);
-                try {
-            req.setAttribute("topping", topRepository.findAll());
-            req.setAttribute("bottom",bottomRepository.findAll());
+        getShoppingCart(req);
+        req.setAttribute("topping", api.allTops());
+        req.setAttribute("bottom", api.allBottoms());
+        render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String number = req.getParameter("number");
+        String topping = req.getParameter("topping");
+        String bottom = req.getParameter("bottom");
+
+        try {
+            OrdreLinie ordreLinie = new OrdreLinie(Integer.parseInt(number), 0,
+                    api.findTop(Integer.parseInt(topping)),
+                    api.findBottom(Integer.parseInt(bottom)));
+            getShoppingCart(req).add(ordreLinie);
         } catch (DBException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp );
+
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
 
     }
 }
