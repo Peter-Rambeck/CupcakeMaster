@@ -24,7 +24,7 @@ public class DBBottomRepository implements BottomRepository{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-
+                
                 if (bottomList == null) {
                     bottomList = new ArrayList<>();
                 }

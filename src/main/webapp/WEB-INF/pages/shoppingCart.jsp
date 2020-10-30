@@ -75,7 +75,7 @@
     </div>
 
     <div class="text-right">
-        <button type="submit" href="" class="btn btn-primary">Go to cart</button>
+        <input type="submit" class="btn btn-primary" value = "Tilføj til ordre" />
     </div>
 
 </form>
