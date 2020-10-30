@@ -1,5 +1,10 @@
 package cupcakeMaster.api;
 import cupcakeMaster.domain.order.*;
+import cupcakeMaster.domain.order.customer.Customer;
+import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
+import cupcakeMaster.domain.order.customer.CustomerRepository;
+
+import java.sql.SQLException;
 
 public class Cupcake {
 
@@ -7,12 +12,14 @@ public class Cupcake {
     private final OrdreLinieRepository orderlists;
     private final BottomRepository bottoms;
     private final TopRepository tops;
+    private final CustomerRepository customers;
     private int parseInt;
 
-    public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops) {
+    public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops,CustomerRepository customers) {
         this.orderlists = orderlists;
         this.bottoms = buttoms;
         this.tops = tops;
+        this.customers=customers;
     }
 
     public String getVersion() {
@@ -42,6 +49,13 @@ public class Cupcake {
 
     public Bottom findBottom(int parseInt) throws DBException {
         return bottoms.find(parseInt);
+    }
+
+    public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
+        return customers.findCostumer(email);
+    }
+    public Customer commitCustomer(Customer customer) throws DBException, SQLException {
+        return customers.commitCustomer(customer);
     }
 }
 
