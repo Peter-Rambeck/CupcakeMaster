@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 public class CupcakeTest {
-
+/*
     @Test
-   /* public void gemcustomer() throws DBException, SQLException, CustomerNotFoundException {
+    public void gemcustomer() throws DBException, SQLException, CustomerNotFoundException {
         Database db = new Database();
         Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db));
         Customer customer=new Customer("test@gamil.com",0,true,"123455".getBytes(),"fiugi".getBytes());
