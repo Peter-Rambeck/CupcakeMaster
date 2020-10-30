@@ -5,6 +5,8 @@ import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
 import cupcakeMaster.domain.order.customer.CustomerRepository;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Cupcake {
 
@@ -22,7 +24,10 @@ public class Cupcake {
         this.customers=customers;
     }
 
-    public String getVersion() {
+    public int commitShoppingCart(List<OrdreLinie>ordreLinier, LocalDate dato, int customer_id) throws DBException {
+        return orderlists.commitShoppingCart(ordreLinier,dato,customer_id);
+    }
+        public String getVersion() {
         return VERSION;
     }
 

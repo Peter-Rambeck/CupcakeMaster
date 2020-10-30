@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: PC
+  Date: 30-10-2020
+  Time: 13:46
+  To change this template use File | Settings | File Templates.
+--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8"%>
@@ -75,13 +82,10 @@
     </div>
 
     <div class="text-right">
-        <button type="submit" class="btn btn-primary" name="order">Add to order</button>
+        <button type="submit" class="btn btn-primary">Add to order</button>
     </div>
 
 </form>
-
-<form method="post">
-    <input type="hidden" name="target" value="bestil">
 <div class="row">
     <h1 class="text-center">Din bestilling</h1>
     <br>
@@ -114,16 +118,16 @@
 <c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje">
     <div class="row">
         <div class="col-md-2">
-            ${ordreLinje.quantity}
+                ${ordreLinje.quantity}
         </div>
         <div class="col-md-2">
-            ${ordreLinje.bottom.name}
+                ${ordreLinje.bottom.name}
         </div>
         <div class="col-md-2">
-            ${ordreLinje.top.name}
+                ${ordreLinje.top.name}
         </div>
         <div class="col-md-2">
-            ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
+                ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
         </div>
         <div class="col-md-2">
             N/A
@@ -135,8 +139,8 @@
 
 
 </div>
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary">Buy order</button>
-    </div>
-</form>
 
+
+<div class="text-left">
+    <a class="btn btn-primary" href="FrontController?target=redirect&destination=bestilling" role="button">Add Cupcakes</a>
+</div>
