@@ -1,11 +1,9 @@
 package cupcakeMaster.infrastructure;
 
 import cupcakeMaster.domain.order.*;
-import cupcakeMaster.domain.shoppingList.ShoppingList;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DBOrdreLinieRepository implements OrdreLinieRepository {
@@ -33,7 +31,7 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
     }
 
     @Override
-    public OrdreLinie commit(OrdreLinie ordreLinie, int ordre_id) throws DBException {
+    public int commit(OrdreLinie ordreLinie, int ordre_id) throws DBException {
         try {
             Connection con = db.connect();
             String SQL = "INSERT INTO ordrelinie (QUANTITY, SUM, ORDRE_ID, TOPPING_ID, BOTTOM_ID) VALUES (?,?,?,?,?)";
@@ -48,15 +46,14 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                ordreLinie.setOrdrelinie_id(rs.getInt("bottom_id"));
-                return ordreLinie;
+                return rs.getInt(1);
             }
-
+            return 0;
         } catch ( SQLException ex) {
             throw new DBException(ex.getMessage());
         }
 
-        return null;
+
     }
 
     @Override
@@ -71,15 +68,17 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                ordre_id=rs.getInt("bottom_id");
+                ordre_id=rs.getInt(1);
             }
         } catch ( SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-        for (OrdreLinie ordreLinie:ordreLinier) {
+
+        System.out.println(ordreLinier.size());
+        for (OrdreLinie ordreLinie:ordreLinier ) {
             commit(ordreLinie,ordre_id);
         }
-    return ordre_id;
+        return ordre_id;
     }
 
 }

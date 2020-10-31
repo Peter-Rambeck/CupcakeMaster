@@ -1,9 +1,8 @@
 package web.pages;
 
+import cupcakeMaster.api.Cupcake;
 import cupcakeMaster.domain.order.*;
-import cupcakeMaster.infrastructure.DBBottomRepository;
-import cupcakeMaster.infrastructure.DBTopRepository;
-import cupcakeMaster.infrastructure.Database;
+import cupcakeMaster.infrastructure.*;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +35,13 @@ public class ShoppingCart extends BaseServlet {
         req.setAttribute("topping", api.allTops());
         req.setAttribute("bottom", api.allBottoms());
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("target").equals("shoppingCart")) {
         String number = req.getParameter("number");
         String topping = req.getParameter("topping");
         String bottom = req.getParameter("bottom");
@@ -53,7 +56,26 @@ public class ShoppingCart extends BaseServlet {
         }
 
         resp.sendRedirect(req.getContextPath() + "/shoppingCart");
-
-
     }
+
+    if(req.getParameter("target").equals("bestil")) {
+
+        Database db = new Database();
+        Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db));
+        try {
+            cupcake.commitShoppingCart(getShoppingCart(req), LocalDate.now(),1);//-----------
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        req.setAttribute("ordrelinier",getShoppingCart(req));// liste af ordrelinier
+        req.setAttribute("email","test@gmail");//-------------
+        req.setAttribute("date", LocalDate.now());
+        resp.sendRedirect(req.getContextPath() + "/order");
+    }
+
+
 }
+
+
+}
+

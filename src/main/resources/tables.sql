@@ -17,9 +17,10 @@ PRIMARY KEY ( bottom_id )
 CREATE TABLE customer (
 customer_id INT NOT NULL AUTO_INCREMENT,
 email VARCHAR(50),
-password VARCHAR(50),
 role VARCHAR(10),
 saldo INT,
+salt BINARY(16),
+secret BINARY(32),
 PRIMARY KEY (customer_id));
 
 CREATE TABLE ordre (

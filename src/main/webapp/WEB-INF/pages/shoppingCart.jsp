@@ -77,7 +77,7 @@
 </form>
 
 <form method="post">
-    <input type="hidden" name="target" value="order">
+    <input type="hidden" name="target" value="bestil">
 
 <div class="row">
     <h1 class="text-center">Din bestilling</h1>
@@ -135,10 +135,7 @@
 <hr>
 
 
-
-</div>
-
 <div class="text-right">
-    <a class="btn btn-primary" role="button">Bestil</a>
+    <button type="submit" class="btn btn-primary">Bestil</button>
 </div>
 </form>

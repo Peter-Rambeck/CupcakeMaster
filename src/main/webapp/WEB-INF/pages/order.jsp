@@ -38,22 +38,23 @@
 </div>
 <hr>
 
-<c:forEach items="${}" var="Ordre">
+<c:forEach items="${sessionScope.shoppingCart}" var="cupcake">
     <div class="row">
         <div class="col-md-2">
                 N/A
         </div>
         <div class="col-md-2">
-                ${ordreLinje.bottom.name}
+            ${requestScope.ordrelinier.size()}
         </div>
         <div class="col-md-2">
-                ${ordreLinje.top.name}
+                ${requestScope.date}
         </div>
         <div class="col-md-2">
-                ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
+                ${requestScope.email}
+
         </div>
         <div class="col-md-2">
-            N/A
+                ${requestScope.ordrelinier.size()}
         </div>
         <div class="col-md-2">
             N/A
@@ -67,6 +68,10 @@
 </div>
 
 
-<div class="text-right">
+<div class="row" style="align-content: center">
+
+    <a class="btn btn-primary" href="shoppingCart" role="button">Til shoppingcart</a>
+    <br>
+
     <a class="btn btn-primary" role="button">Afslut</a>
 </div>

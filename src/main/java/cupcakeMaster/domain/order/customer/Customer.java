@@ -24,7 +24,6 @@ public class Customer {
     }
 
 
-
     private int customerId;
     private String email;
     private int saldo;
@@ -42,7 +41,13 @@ public class Customer {
         this.secret = secret;
         this.admin = admin;
     }
-
+    public Customer( String email, int saldo, boolean admin, byte[] salt, byte[] secret) {
+        this.email = email;
+        this.saldo = saldo;
+        this.salt = salt;
+        this.secret = secret;
+        this.admin = admin;
+    }
 
 
 
@@ -88,7 +93,29 @@ public class Customer {
         return admin;
     }
 
+    public static int getPasswordIterations() {
+        return PASSWORD_ITERATIONS;
+    }
 
+    public static int getPasswordLength() {
+        return PASSWORD_LENGTH;
+    }
+
+    public static SecretKeyFactory getPasswordFactory() {
+        return PASSWORD_FACTORY;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public byte[] getSecret() {
+        return secret;
+    }
 
     @Override
     public boolean equals(Object o) {

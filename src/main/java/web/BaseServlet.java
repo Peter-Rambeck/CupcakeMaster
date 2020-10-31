@@ -2,10 +2,7 @@ package web;
 
 import cupcakeMaster.api.Cupcake;
 import cupcakeMaster.domain.order.*;
-import cupcakeMaster.infrastructure.DBBottomRepository;
-import cupcakeMaster.infrastructure.DBOrdreLinieRepository;
-import cupcakeMaster.infrastructure.DBTopRepository;
-import cupcakeMaster.infrastructure.Database;
+import cupcakeMaster.infrastructure.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,9 +22,10 @@ public class BaseServlet extends HttpServlet {
 
     private static Cupcake createCupcake(){
         Database db = new Database();
-        return new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db));
+        return new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db), new DBCustomerRepository(db));
     }
 
+    /*
     private static Cupcake createEmptyCupcake(){
         return new Cupcake(null, new BottomRepository() {
             List<Bottom> bottoms = List.of(new Bottom(0, "bottom", 0));
@@ -54,6 +52,8 @@ public class BaseServlet extends HttpServlet {
             }
         });
     }
+
+     */
 
 
     protected void setup(HttpServletRequest req, HttpServletResponse resp) throws IOException {
