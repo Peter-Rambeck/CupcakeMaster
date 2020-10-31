@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html;charset=UTF-8"%>
+<%@page import="cupcakeMaster.infrastructure.DBTopRepository" %>
 
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="cupcakeMaster.infrastructure.DBTopRepository" %>
+
 
 <div class="row">
     <h1>Velkommen ombord</h1>
@@ -12,11 +13,6 @@
     <h3 >Øens bedste Cupcakes.<br/>
         Vælg og bestil her</h3>
 </div>
-
-<%
-    //request.setAttribute("bottoms", );
-    // request.setAttribute("toppings", LogicFacade.getAllToppings());
-%>
 
 <form method="post">
     <input type="hidden" name="target" value="shoppingCart">
@@ -79,6 +75,10 @@
     </div>
 
 </form>
+
+<form method="post">
+    <input type="hidden" name="target" value="order">
+
 <div class="row">
     <h1 class="text-center">Din bestilling</h1>
     <br>
@@ -99,13 +99,11 @@
     <div class="col-md-2">
         Topping
     </div>
-    <div class="col-md-2">
+
+    <div class="col-md-3">
         Price
     </div>
-    <div class="col-md-2">
-        Change
-    </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         Delete
     </div>
 </div>
@@ -122,15 +120,16 @@
         <div class="col-md-2">
             ${ordreLinje.top.name}
         </div>
-        <div class="col-md-2">
+
+        <div class="col-md-3">
             ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
         </div>
-        <div class="col-md-2">
-            N/A
+
+        <div class="col-md-3">
+            Delete
         </div>
-        <div class="col-md-2">
-            N/A
-        </div>
+
+
     </div>
 </c:forEach>
 <hr>
@@ -139,7 +138,7 @@
 
 </div>
 
-
-<div class="text-left">
-    <a class="btn btn-primary" href="FrontController?target=redirect&destination=index" role="button">Add Cupcakes</a>
+<div class="text-right">
+    <a class="btn btn-primary" role="button">Bestil</a>
 </div>
+</form>

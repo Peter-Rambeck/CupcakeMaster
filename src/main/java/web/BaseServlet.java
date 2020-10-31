@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class BaseServlet extends HttpServlet {
         req.setAttribute("version", api.getVersion());
         req.setAttribute("title", title);
         req.setAttribute("content", content);
+
         req.getRequestDispatcher("/WEB-INF/base.jsp").forward(req, resp);
 
     }

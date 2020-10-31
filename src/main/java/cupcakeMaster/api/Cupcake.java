@@ -43,6 +43,19 @@ public class Cupcake {
     public Bottom findBottom(int parseInt) throws DBException {
         return bottoms.find(parseInt);
     }
+
+    public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
+        return customers.findCostumer(email);
+    }
+    public Customer commitCustomer(Customer customer) throws DBException, SQLException {
+        return customers.commitCustomer(customer);
+    }
+
+    public OrdreFactory createOrdre() {
+        return null;
+      
+    }
+
 }
 
 
