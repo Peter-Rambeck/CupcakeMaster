@@ -36,7 +36,6 @@ public class ShoppingCart extends BaseServlet {
         req.setAttribute("bottom", api.allBottoms());
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
 
-
     }
 
     @Override
@@ -67,6 +66,7 @@ public class ShoppingCart extends BaseServlet {
         } catch (DBException e) {
             e.printStackTrace();
         }
+        req.setAttribute("ordreId", "2");
         req.setAttribute("ordrelinier",getShoppingCart(req));// liste af ordrelinier
         req.setAttribute("email","test@gmail");//-------------
         req.setAttribute("date", LocalDate.now());

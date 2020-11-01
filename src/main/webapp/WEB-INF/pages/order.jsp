@@ -38,30 +38,31 @@
 </div>
 <hr>
 
-<c:forEach items="${sessionScope.shoppingCart}" var="cupcake">
+
     <div class="row">
         <div class="col-md-2">
-                N/A
+            ${requestScope.ordreId}
+        </div>
+        <div class="col-md-2">
+            N/A
+        </div>
+        <div class="col-md-2">
+            N/A
         </div>
         <div class="col-md-2">
             ${requestScope.ordrelinier.size()}
-        </div>
-        <div class="col-md-2">
-                ${requestScope.date}
-        </div>
-        <div class="col-md-2">
-                ${requestScope.email}
 
         </div>
         <div class="col-md-2">
-                ${requestScope.ordrelinier.size()}
+
         </div>
         <div class="col-md-2">
             N/A
         </div>
     </div>
-</c:forEach>
+
 <hr>
+
 
 
 

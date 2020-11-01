@@ -113,12 +113,14 @@
     <div class="row">
         <div class="col-md-2">
             ${ordreLinje.quantity}
+
         </div>
         <div class="col-md-2">
             ${ordreLinje.bottom.name}
         </div>
         <div class="col-md-2">
             ${ordreLinje.top.name}
+
         </div>
 
         <div class="col-md-3">
@@ -133,6 +135,7 @@
     </div>
 </c:forEach>
 <hr>
+
 
 
 <div class="text-right">

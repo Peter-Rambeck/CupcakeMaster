@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}">Cupcake</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Cupcake</a>
     <a class="navbar-brand" href="">Kunde</a>
     <a class="navbar-brand" href="">Login</a>
 
