@@ -28,7 +28,7 @@
                 <label for="numberOfCupcakes">Angiv antal</label>
                 <select class="form-control" name="number" id="numberOfCupcakes">
                     <c:forEach var = "i" begin = "1" end = "12">
-                        <option value="1">
+                        <option value="${i}">
                            ${i}
                         </option>
                     </c:forEach>
