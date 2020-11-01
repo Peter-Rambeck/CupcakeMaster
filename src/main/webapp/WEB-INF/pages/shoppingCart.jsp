@@ -27,15 +27,11 @@
             <div class="form-group ">
                 <label for="numberOfCupcakes">Angiv antal</label>
                 <select class="form-control" name="number" id="numberOfCupcakes">
-                    <option value="1">
-                        1
-                    </option>
-                    <option value="2">
-                        2
-                    </option>
-                    <option value="3">
-                        3
-                    </option>
+                    <c:forEach var = "i" begin = "1" end = "12">
+                        <option value="1">
+                           ${i}
+                        </option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
@@ -80,8 +76,7 @@
 
 </form>
 
-<form method="post">
-    <input type="hidden" name="target" value="bestil">
+
 <div class="row">
     <h1 class="text-center">Din bestilling</h1>
     <br>
@@ -105,13 +100,10 @@
     <div class="col-md-2">
         Price
     </div>
-    <div class="col-md-2">
-        Delete
-    </div>
-</div>
+   </div>
 <hr>
 
-<c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje">
+<c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje" varStatus="loop">
     <div class="row">
         <div class="col-md-2">
             ${ordreLinje.quantity}
@@ -125,15 +117,22 @@
         <div class="col-md-2">
             ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
         </div>
-        <div class="col-md-2">
-            N/A
+        <div class="col-md-4">
+            <form method="post" class="text-right">
+                   <input type="hidden" name="delete" value="${loop.index}">
+                <button type="submit" class="btn btn-primary" class=>Delete</button>
+            </form>
+        </div>
+        </div>
+        </form>
         </div>
     </div>
 </c:forEach>
 <hr>
 
 
-
+<form method="post">
+    <input type="hidden" name="target" value="bestil">
 </div>
     <div class="text-right">
         <button type="submit" class="btn btn-primary">Buy order</button>

@@ -39,7 +39,8 @@ public class ShoppingCart extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       if(req.getParameter("target").equals("shoppingCart")) {
+       if(req.getParameter("target")!=null)
+        if(req.getParameter("target").equals("shoppingCart")) {
             String number = req.getParameter("number");
             String topping = req.getParameter("topping");
             String bottom = req.getParameter("bottom");
@@ -54,6 +55,7 @@ public class ShoppingCart extends BaseServlet {
 
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
         }
+       if (req.getParameter("target")!=null)
         if(req.getParameter("target").equals("bestil")) {
             Database db = new Database();
             Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db));
@@ -68,6 +70,12 @@ public class ShoppingCart extends BaseServlet {
 
 
             resp.sendRedirect(req.getContextPath() + "/order");
+        }
+        if(req.getParameter("delete")!=null){
+            int lineToDelete=Integer.parseInt(req.getParameter("delete"));
+            getShoppingCart(req).remove(lineToDelete);
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
         }
     }
 }
