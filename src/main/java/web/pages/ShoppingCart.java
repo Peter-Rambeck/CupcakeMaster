@@ -5,11 +5,10 @@ import cupcakeMaster.domain.order.*;
 import cupcakeMaster.infrastructure.*;
 import web.BaseServlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -58,17 +57,18 @@ public class ShoppingCart extends BaseServlet {
        if (req.getParameter("target")!=null)
         if(req.getParameter("target").equals("bestil")) {
             Database db = new Database();
-            Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db));
+            Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db),new DBOrdreRepository(db));
+            int ordre_id=0;
             try {
-                cupcake.commitShoppingCart(getShoppingCart(req), LocalDate.now(),1);//-----------
+                System.out.println("commit");
+                ordre_id=cupcake.commitShoppingCart(getShoppingCart(req), LocalDate.now(),1);//-----------
             } catch (DBException e) {
                 e.printStackTrace();
             }
-            req.setAttribute("ordrelinier",getShoppingCart(req));// liste af ordrelinier
-            req.setAttribute("email","test@gmail");//-------------
-            req.setAttribute("date",LocalDate.now());
-
-
+            var s = req.getSession();
+            s.setAttribute("orderID",ordre_id);
+            System.out.println("orderid: "+ordre_id);
+            s.setAttribute("shoppingCart",null);
             resp.sendRedirect(req.getContextPath() + "/order");
         }
         if(req.getParameter("delete")!=null){

@@ -21,7 +21,7 @@ public class BaseServlet extends HttpServlet {
 
     private static Cupcake createCupcake(){
         Database db = new Database();
-        return new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db));
+        return new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db),new DBOrdreRepository(db));
     }
 /*
     private static Cupcake createEmptyCupcake(){

@@ -7,12 +7,12 @@ import java.time.LocalDate;
 public class Ordre {
     private int ordre_id;
     private LocalDate date;
-    private Customer customer;
+    private int customer_id;
 
-    public Ordre(LocalDate date, Customer customer) {
+    public Ordre(LocalDate date, int customer_id) {
 
         this.date = date;
-        this.customer = customer;
+        this.customer_id = customer_id;
     }
 
     public int getOrdre_id() {
@@ -31,11 +31,11 @@ public class Ordre {
         this.date = date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomer() {
+        return customer_id;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(int customer_id) {
+        this.customer_id = customer_id;
     }
 }

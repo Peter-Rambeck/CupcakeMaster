@@ -33,7 +33,37 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
     }
 
     @Override
+    public List<OrdreLinie> findFromOrdreID(int ordre_ID) throws NoOrdreExist {
+        BottomRepository bottoms=new DBBottomRepository(db);
+        TopRepository tops=new DBTopRepository(db);
+            ArrayList<OrdreLinie> ordreLinier=new ArrayList<>();
+            try {
+                Connection con = db.connect();
+                String SQL = "SELECT * FROM ordrelinie WHERE ordre_id=(?)";
+                PreparedStatement ps = con.prepareStatement(SQL);
+                ps.setInt(1,ordre_ID);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()) {
+                 int ordreLinie_ID=rs.getInt("ordrelinie_id");
+                 int quantity=rs.getInt("quantity");
+                 int sum=rs.getInt("sum");
+                 int topping_ID=rs.getInt("topping_id");
+                 Top top=tops.find(topping_ID);
+
+                 int bottom_ID=rs.getInt("bottom_id");
+                 Bottom bottom=bottoms.find(bottom_ID);
+                 OrdreLinie ordrelinie=new OrdreLinie(quantity,sum,top,bottom);
+                 ordreLinier.add(ordrelinie);
+                }
+            } catch (SQLException | DBException ex) {
+                throw new NoOrdreExist();
+            }
+            return ordreLinier;
+    }
+
+    @Override
     public int commit(OrdreLinie ordreLinie, int ordre_id) throws DBException {
+
         try {
             Connection con = db.connect();
             String SQL = "INSERT INTO ordrelinie (QUANTITY, SUM, ORDRE_ID, TOPPING_ID, BOTTOM_ID) VALUES (?,?,?,?,?)";

@@ -15,13 +15,15 @@ public class Cupcake {
     private final BottomRepository bottoms;
     private final TopRepository tops;
     private final CustomerRepository customers;
+    private final OrdreRepository ordrer;
     private int parseInt;
 
-    public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops,CustomerRepository customers) {
+    public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops,CustomerRepository customers,OrdreRepository ordrer) {
         this.orderlists = orderlists;
         this.bottoms = buttoms;
         this.tops = tops;
         this.customers=customers;
+        this.ordrer=ordrer;
     }
 
     public int commitShoppingCart(List<OrdreLinie>ordreLinier, LocalDate dato, int customer_id) throws DBException {
@@ -54,6 +56,13 @@ public class Cupcake {
 
     public Bottom findBottom(int parseInt) throws DBException {
         return bottoms.find(parseInt);
+    }
+    public Ordre findOrdre(int parseInt) throws DBException, NoOrdreExist {
+        return ordrer.find(parseInt);
+    }
+
+    public List<OrdreLinie> findOrdreLinierFromOrdreID(int ordre_ID) throws NoOrdreExist {
+        return orderlists.findFromOrdreID(ordre_ID);
     }
 
     public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
