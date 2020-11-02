@@ -118,9 +118,9 @@
             ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
         </div>
         <div class="col-md-4">
-            <form method="post" class="text-right">
-                   <input type="hidden" name="delete" value="${loop.index}">
-                <button type="submit" class="btn btn-primary" class=>Delete</button>
+            <form method="post" >
+                <input type="hidden" name="delete" value="${loop.index}">
+                <button type="submit" class="btn btn-primary" >Delete</button>
             </form>
         </div>
         </div>

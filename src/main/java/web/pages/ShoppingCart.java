@@ -54,13 +54,15 @@ public class ShoppingCart extends BaseServlet {
 
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
         }
+
+
+
        if (req.getParameter("target")!=null)
         if(req.getParameter("target").equals("bestil")) {
             Database db = new Database();
             Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db),new DBOrdreRepository(db));
             int ordre_id=0;
             try {
-                System.out.println("commit");
                 ordre_id=cupcake.commitShoppingCart(getShoppingCart(req), LocalDate.now(),1);//-----------
             } catch (DBException e) {
                 e.printStackTrace();
@@ -71,6 +73,9 @@ public class ShoppingCart extends BaseServlet {
             s.setAttribute("shoppingCart",null);
             resp.sendRedirect(req.getContextPath() + "/order");
         }
+
+
+
         if(req.getParameter("delete")!=null){
             int lineToDelete=Integer.parseInt(req.getParameter("delete"));
             getShoppingCart(req).remove(lineToDelete);

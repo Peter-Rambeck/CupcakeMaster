@@ -2,34 +2,15 @@
 <nav class="navbar navbar-expand-md navbar-purple bg-dark fixed-top">
     <a class="navbar-brand" href="<c:url value="/"/>">${requestScope.navbar.webpageName}</a>
     <a class="navbar-brand" href="">Home</a>
-    <a class="navbar-brand" href="">Bestilling</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" href="shoppingCart">Bestilling</a>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <c:forEach var="i" items="${requestScope.navbar.items}">
-                <li class="nav-item <c:if test="${i.active}">active</c:if>">
-                    <a class="nav-link" href="<c:url value="${i.url}"/>">${i.name} <c:if test="${i.active}"><span
-                            class="sr-only">(current)</span></c:if></a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-    <!--
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
-    -->
+
+
+
     <c:choose>
         <%--@elvariable id="user" type="java.lang.String"--%>
         <c:when test="${user == null}">
-            <div class="nav-item dropdown">
+            <div class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">Log In</a>

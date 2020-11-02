@@ -25,12 +25,9 @@ public class Order extends BaseServlet {
         Ordre order;
         List<OrdreLinie> ordreLinies;
         int order_ID= (int) s.getAttribute("orderID");
-        System.out.println("hentet id"+order_ID);
         try {
             order=api.findOrdre(order_ID);
-            System.out.println(order);
             ordreLinies=api.findOrdreLinierFromOrdreID(order_ID);
-            System.out.println(ordreLinies.size());
             req.setAttribute("orderID",order_ID);
             req.setAttribute("orderDate",order.getDate());
             req.setAttribute("email","testtttttttt");//------------------------------
