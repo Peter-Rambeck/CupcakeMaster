@@ -7,6 +7,7 @@ import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
 import cupcakeMaster.domain.order.customer.CustomerRepository;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBCustomerRepository implements CustomerRepository {
     private final Database db;
@@ -16,7 +17,7 @@ public class DBCustomerRepository implements CustomerRepository {
 
     @Override
     public Iterable<Customer> customer() {
-        return null;
+       return null;
     }
 
     @Override

@@ -33,6 +33,11 @@ public class ShoppingCart extends BaseServlet {
         getShoppingCart(req);
         req.setAttribute("topping", api.allTops());
         req.setAttribute("bottom", api.allBottoms());
+        try {
+            System.out.println("size of map"+api.findOpenOrdersAndOrdreLines().size());
+        } catch (NoOrdreExist noOrdreExist) {
+            noOrdreExist.printStackTrace();
+        }
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
     }
 
@@ -69,7 +74,6 @@ public class ShoppingCart extends BaseServlet {
             }
             var s = req.getSession();
             s.setAttribute("orderID",ordre_id);
-            System.out.println("orderid: "+ordre_id);
             s.setAttribute("shoppingCart",null);
             resp.sendRedirect(req.getContextPath() + "/order");
         }

@@ -27,6 +27,7 @@ CREATE TABLE ordre (
 ordre_id INT NOT NULL AUTO_INCREMENT,
 date DATE,
 customer_id INT,
+status VARCHAR(10),
 PRIMARY KEY (ordre_id),
 FOREIGN KEY(customer_id) REFERENCES customer(customer_id));
 

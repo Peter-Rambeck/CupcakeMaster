@@ -6,6 +6,8 @@ import cupcakeMaster.domain.order.customer.CustomerRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Cupcake {
@@ -41,6 +43,16 @@ public class Cupcake {
         }
     }
 
+    public HashMap<Integer,List<OrdreLinie>> findOpenOrdersAndOrdreLines() throws NoOrdreExist {
+        HashMap<Integer,List<OrdreLinie>> ordreMap=new HashMap<>();
+        List<Ordre> orders=findOpenOrders();
+        for (Ordre ordre:orders) {
+            List<OrdreLinie> ordreLinier=findOrdreLinierFromOrdreID(ordre.getOrdre_id());
+            ordreMap.put(ordre.getOrdre_id(),ordreLinier);
+        }
+        return ordreMap;
+    }
+
     public Iterable<Bottom> allBottoms() {
         try {
             return bottoms.findAll();
@@ -63,6 +75,10 @@ public class Cupcake {
 
     public List<OrdreLinie> findOrdreLinierFromOrdreID(int ordre_ID) throws NoOrdreExist {
         return orderlists.findFromOrdreID(ordre_ID);
+    }
+
+    public List<Ordre> findOpenOrders() throws NoOrdreExist {
+        return ordrer.findAll();
     }
 
     public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
