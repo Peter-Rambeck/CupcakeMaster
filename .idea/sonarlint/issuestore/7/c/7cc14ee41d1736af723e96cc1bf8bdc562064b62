@@ -1,0 +1,26 @@
+
+m	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( Ãı­
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ª¸Á†ûÿÿÿÿ8èâÉÖØ.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¾Çİíøÿÿÿÿ8èâÉÖØ.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¾Çİíøÿÿÿÿ8èâÉÖØ.
+j	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûá%8èâÉÖØ.
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÁî³8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶Õ© ûÿÿÿÿ8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü‚½şıÿÿÿÿ8èâÉÖØ.
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÒ³ô8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„§—üÿÿÿÿ8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ‡¾¹øÿÿÿÿ8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê˜Óòúÿÿÿÿ8èâÉÖØ.
+j	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıáá(8èâÉÖØ.
+p	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½Ë÷Šøÿÿÿÿ8èâÉÖØ.
+f
+java:S1128"KRemove this unused import 'cupcakeMaster.domain.shoppingList.ShoppingList'.(İŞÑ8èâÉÖØ.
+H	java:S108")Either remove or fill this block of code.(ú›ƒÌÿÿÿÿÿ8èâÉÖØ.
+a
+java:S1854"ARemove this useless assignment to local variable "ordreLinie_ID".(¶Õ© ûÿÿÿÿ8èâÉÖØ.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(äïà¨ÿÿÿÿÿ8èâÉÖØ.
+R
+java:S1481"2Remove this unused "ordreLinie_ID" local variable.(¶Õ© ûÿÿÿÿ8èâÉÖØ.

@@ -1,0 +1,14 @@
+
+Q
+java:S1128"6Remove this unused import 'cupcakeMaster.api.Cupcake'.(ú‘‘Ø8€Üÿ×Ø.
+[
+java:S1128";Remove this unused import 'cupcakeMaster.domain.order.Top'.(ÁÌå‚ùÿÿÿÿ8€Üÿ×Ø.
+R
+java:S1854"8Remove this useless assignment to local variable "date".(ÍêÄL8€Üÿ×Ø.
+[	java:S125"<This block of commented-out lines of code should be removed.(”ïá§üÿÿÿÿ8€Üÿ×Ø.
+[	java:S125"<This block of commented-out lines of code should be removed.(ØÆ¹Ãüÿÿÿÿ8€Üÿ×Ø.
+{
+java:S1989"`Handle the following exceptions that could be thrown by "render": ServletException, IOException.(›œü8€Üÿ×Ø.
+V	java:S125"<This block of commented-out lines of code should be removed.(˜¤ƒ8€Üÿ×Ø.
+C
+java:S1481")Remove this unused "date" local variable.(ÍêÄL8€Üÿ×Ø.

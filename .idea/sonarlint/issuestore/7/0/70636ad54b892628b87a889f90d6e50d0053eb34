@@ -1,0 +1,17 @@
+
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ª¸Á†ûÿÿÿÿ
+j
+java:S20952"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ª¸Á†ûÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ¿™óÿÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È’¨ñ
+k	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÓ·Äşÿÿÿÿ
+f	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È’¨ñ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( Ãı­
+_
+java:S2583"DChange this condition so that it does not always evaluate to "false"(ÁèÖşÿÿÿÿ
+v
+java:S14889"[Immediately return this expression instead of assigning it to the temporary variable "top".(ÀÕ©ùÿÿÿÿ
+F
+java:S1128
+"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
