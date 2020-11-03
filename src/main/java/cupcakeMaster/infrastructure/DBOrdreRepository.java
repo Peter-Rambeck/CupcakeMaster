@@ -72,4 +72,19 @@ public class DBOrdreRepository implements OrdreRepository {
     public int commit(Ordre ordre, int ordre_id) throws DBException {
         return 0;
     }
+
+    @Override
+    public void deleteOrdre(int ordre_id) throws NoOrdreExist {
+        try {
+            Connection con = db.connect();
+            String SQL = "DELETE FROM ordre WHERE ordre_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new NoOrdreExist();
+        }
+
+    }
 }

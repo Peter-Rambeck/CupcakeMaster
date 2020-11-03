@@ -39,21 +39,24 @@
     </div>
 </div>
 <hr>
-<div class="row">
+
+
+<c:forEach items="${requestScope.Orders}" var="order" varStatus="loop">
+    <div class="row">
     <div class="col-md-1">
-        ${requestScope.orderID}
+        ${order.ordre_id}
     </div>
     <div class="col-md-2">
-        ${requestScope.pickupDate}
+            ${requestScope.pickupdate[loop.index]}
     </div>
     <div class="col-md-2">
-        ${requestScope.email}
+            ${requestScope.email[loop.index]}
     </div>
     <div class="col-md-2">
-        ${requestScope.quantity}
+        ${requestScope.quantity[loop.index]}
     </div>
     <div class="col-md-1">
-        ${requestScope.price}
+      ${requestScope.price[loop.index]}
     </div>
     <div class="col-md-1">
         <a class="btn btn-light" href="" role="button">Vis ordre</a>
@@ -63,10 +66,12 @@
     <div class="col-md-1">
         <a class="btn btn-light" href="" role="button">Slet</a>
     </div>
-</div>
-<hr>
+
 </div>
 
+<hr>
+</div>
+</c:forEach>
 
 <div class="row">
     <hr>

@@ -45,7 +45,7 @@ public class Cupcake {
 
     public HashMap<Integer,List<OrdreLinie>> findOpenOrdersAndOrdreLines() throws NoOrdreExist {
         HashMap<Integer,List<OrdreLinie>> ordreMap=new HashMap<>();
-        List<Ordre> orders=findOpenOrders();
+        Iterable<Ordre> orders=findOpenOrders();
         for (Ordre ordre:orders) {
             List<OrdreLinie> ordreLinier=findOrdreLinierFromOrdreID(ordre.getOrdre_id());
             ordreMap.put(ordre.getOrdre_id(),ordreLinier);
@@ -59,7 +59,23 @@ public class Cupcake {
         } catch (DBException e) {
             throw new RuntimeException(e);
         }
-}
+    }
+
+    public void deleteOrder(int order_id){
+        try {
+            ordrer.deleteOrdre(order_id);
+        } catch (NoOrdreExist noOrdreExist) {
+            noOrdreExist.printStackTrace();
+        }
+    }
+
+    public List<Ordre> findOpenOrders() {
+        try {
+            return ordrer.findAll();
+        } catch (NoOrdreExist noOrdreExist) {
+            throw new RuntimeException();
+        }
+    }
 
     public Top findTop(int parseInt) throws DBException {
         this.parseInt = parseInt;
@@ -77,9 +93,7 @@ public class Cupcake {
         return orderlists.findFromOrdreID(ordre_ID);
     }
 
-    public List<Ordre> findOpenOrders() throws NoOrdreExist {
-        return ordrer.findAll();
-    }
+
 
     public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
         return customers.findCostumer(email);
