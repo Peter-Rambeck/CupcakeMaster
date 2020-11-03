@@ -31,3 +31,11 @@ R
 "src/main/java/web/pages/Admin.java,e\a\ea586a9ade682895658576189936a64f33c9c051
 P
  src/main/webapp/WEB-INF/base.jsp,a\9\a99bf1757c28f549fc4a92b52655ce5971584ba3
+Z
+*src/main/webapp/WEB-INF/widgets/navbar.jsp,8\4\84747e1760d99ae62d72f816549a991339b720d3
+[
++src/main/webapp/WEB-INF/pages/customers.jsp,d\9\d913c239c3471be230e7ca87d6ddd82a7d784077
+‹
+[src/main/java/web/pages/Customers (Conflicted copy from DESKTOP-QKQKDOJ on 2020-11-03).java,6\0\601318be200506deddbb5baad40b044100c7b226
+V
+&src/main/java/web/pages/Customers.java,4\e\4ed754db300f5d23d421ba5675736636ab93b8bc
