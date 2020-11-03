@@ -48,6 +48,13 @@ public class Cupcake {
             throw new RuntimeException(e);
         }
 }
+public Iterable<Customer> findAll() {
+        try {
+            return customers.findAll();
+        } catch (CustomerNotFoundException | DBException e) {
+            throw new RuntimeException();
+        }
+}
 
     public Top findTop(int parseInt) throws DBException {
         this.parseInt = parseInt;

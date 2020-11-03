@@ -24,37 +24,41 @@
         udestående
     </div>
     <div class="col-md-3">
-        <form method="post">
-            <label for="payment">Indsæt betaling</label>
-            <input type="text" class="form-control" id="payment"
-                   aria-describedby="cashPayment" name="paid">
-            <button type="submit" class="btn btn-light">Betal</button>
-        </form>
+           Indsæt betaling
     </div>
 
 </div>
 <hr>
 <div class="row">
     <div class="col-md-3">
-        N/A
+        <c:forEach  items="${requestScope.customers}" var="customer">
+            <option value="${customerId}">
+                    ${customer.customerId}
+            </option>
+        </c:forEach>
     </div>
     <div class="col-md-3">
-        N/A
+        <c:forEach  items="${requestScope.customers}" var="customer">
+            <option value="${customerId}">
+                    ${customer.email}
+            </option>
+        </c:forEach>
     </div>
     <div class="col-md-3">
-        N/A
+            <c:forEach  items="${requestScope.customers}" var="customer">
+                <option value="${customerId}">
+                        ${customer.saldo}
+                </option>
+            </c:forEach>
     </div>
     <div class="col-md-3">
-        N/A
+        <form method="post">
+            <input type="number" class="form-control" id="payment"
+                   aria-describedby="cashPayment" name="paid">
+        </form>
     </div>
 
     </div>
 </div>
 <hr>
 </div>
-<div class="row" style="align-content: center">
-    <a class="btn btn-primary" role="button">Afslut</a>
-</div>
-
-
-
