@@ -21,6 +21,10 @@ public class Admin extends BaseServlet {
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            var s = req.getSession();
+            if(s.getAttribute("orderToShow")==null)
+            s.setAttribute("orderToShow",0);
+
             HashMap<Integer, List<OrdreLinie>> openordersandlines=null;
             try {
               openordersandlines= api.findOpenOrdersAndOrdreLines();
@@ -57,6 +61,19 @@ public class Admin extends BaseServlet {
         if(req.getParameter("delete")!=null){
             int orderToDelete=Integer.parseInt(req.getParameter("delete"));
             api.deleteOrder(orderToDelete);
+            resp.sendRedirect(req.getContextPath() + "/Admin");
+        }
+        if(req.getParameter("vis")!=null){
+            int orderToShow=Integer.parseInt(req.getParameter("vis"));
+            var s = req.getSession();
+            HashMap<Integer, List<OrdreLinie>> openOrdersAndOrdreLines=null;
+            try {
+                openOrdersAndOrdreLines = api.findOpenOrdersAndOrdreLines();
+            } catch (NoOrdreExist noOrdreExist) {
+                noOrdreExist.printStackTrace();
+            }
+            s.setAttribute("orderToShow",orderToShow);
+            s.setAttribute("orderlinestoshow",openOrdersAndOrdreLines.get(orderToShow));
             resp.sendRedirect(req.getContextPath() + "/Admin");
 
         }

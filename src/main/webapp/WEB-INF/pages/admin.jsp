@@ -59,10 +59,14 @@
       ${requestScope.price[loop.index]}
     </div>
     <div class="col-md-1">
-        <a class="btn btn-light" href="" role="button">Vis ordre</a>
+        <form method="post" >
+         <input type="hidden" name="vis" value="${order.ordre_id}">
+         <button type="submit" class="btn btn-primary" >Vis</button>
+       </form>
     </div>
     <div class="col-md-2">
-        <a class="btn btn-light" href="" role="button">Afhent</a>    </div>
+        <a class="btn btn-light" href="" role="button">Afhent</a>
+    </div>
     <div class="col-md-1">
         <form method="post" >
             <input type="hidden" name="delete" value="${order.ordre_id}">
@@ -74,47 +78,53 @@
 
 <hr>
 </div>
+    <c:if test="${order.ordre_id==sessionScope.orderToShow}">
+        <div class="row">
+            <div class="col-md-3">
+                    antal
+            </div>
+            <div class="col-md-3">
+                    bund
+            </div>
+            <div class="col-md-3">
+                    top
+            </div>
+            <div class="col-md-3">
+                    antal
+            </div>
+
+        </div>
+        <c:forEach items="${sessionScope.orderlinestoshow}" var="ordreLinje" varStatus="loop">
+            <div class="row">
+                <div class="col-md-3">
+                        ${ordreLinje.quantity}
+                </div>
+                <div class="col-md-3">
+                        ${ordreLinje.bottom.name}
+                </div>
+                <div class="col-md-3">
+                        ${ordreLinje.top.name}
+                </div>
+                <div class="col-md-3">
+                        ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
+                </div>
+
+            </div>
+            </form>
+            </div>
+            </div>
+        </c:forEach>
+        <br>
+    </c:if>
 </c:forEach>
 
-<div class="row">
-    <hr>
-    <br>
-</div>
 
-<h3 >Ordrer</h3> <br/>
 
-<div class="row">
-    <div class="col-md-3">
-        Antal
-    </div>
-    <div class="col-md-3">
-        Bottom
-    </div>
-    <div class="col-md-3">
-        Topping
-    </div>
-    <div class="col-md-3">
-        Price
-    </div>
+
 
 </div>
 <hr>
 
-<c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje">
-    <div class="row">
-        <div class="col-md-3">
-                ${ordreLinje.quantity}
-        </div>
-        <div class="col-md-3">
-                ${ordreLinje.bottom.name}
-        </div>
-        <div class="col-md-3">
-                ${ordreLinje.top.name}
-        </div>
-        <div class="col-md-3">
-                ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
-        </div>
-    </div>
-</c:forEach>
+
 <hr>
 
