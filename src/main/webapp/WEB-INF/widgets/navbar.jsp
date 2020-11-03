@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-md navbar-purple bg-dark fixed-top">
-    <a class="navbar-brand" href="<c:url value="/"/>">${requestScope.navbar.webpageName}</a>
-    <a class="navbar-brand" href="">Home</a>
-    <a class="navbar-brand" href="shoppingCart">Bestilling</a>
+    <a class="navbar-brand" href="shoppingCart">Home</a>
+    <a class="navbar-brand" href="Admin">Ordrer</a>
+    <a class="navbar-brand" href="Customers">Kunder</a>
 
 
 
@@ -10,7 +10,7 @@
     <c:choose>
         <%--@elvariable id="user" type="java.lang.String"--%>
         <c:when test="${user == null}">
-            <div class="nav-item dropdown" >
+            <div class="nav-item dropdown-right" style="" >
                 <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">Log In</a>

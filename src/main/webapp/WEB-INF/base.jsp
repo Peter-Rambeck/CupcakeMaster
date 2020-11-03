@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -15,6 +16,10 @@
 
 <body class="">
 <jsp:include page="/WEB-INF/widgets/navbar.jsp" flush="true"/>
+
+<div class="text-center" style="margin-bottom: 2rem">
+    <img src="<c:url value="/images/olskercupcakes.png"/>"  class="img-fluid" alt="">
+</div>
 
 <main role="main" class="container">
     <jsp:include page="${requestScope.content}" flush="true"/>
