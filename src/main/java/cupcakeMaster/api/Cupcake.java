@@ -63,7 +63,14 @@ public class Cupcake {
 
     public void deleteOrder(int order_id){
         try {
-            ordrer.deleteOrdre(order_id);
+            ordrer.updateOrdreStatus(order_id,"deleted");
+        } catch (NoOrdreExist noOrdreExist) {
+            noOrdreExist.printStackTrace();
+        }
+    }
+    public void closeOrder(int order_id){
+        try {
+            ordrer.updateOrdreStatus(order_id,"closed");
         } catch (NoOrdreExist noOrdreExist) {
             noOrdreExist.printStackTrace();
         }

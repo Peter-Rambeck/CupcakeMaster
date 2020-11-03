@@ -64,7 +64,10 @@
     <div class="col-md-2">
         <a class="btn btn-light" href="" role="button">Afhent</a>    </div>
     <div class="col-md-1">
-        <a class="btn btn-light" href="" role="button">Slet</a>
+        <form method="post" >
+            <input type="hidden" name="delete" value="${order.ordre_id}">
+            <button type="submit" class="btn btn-primary" >Delete</button>
+        </form>
     </div>
 
 </div>

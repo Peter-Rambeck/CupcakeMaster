@@ -1,5 +1,6 @@
 package web.pages;
 
+import cupcakeMaster.domain.order.DBException;
 import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.Ordre;
 import cupcakeMaster.domain.order.OrdreLinie;
@@ -51,4 +52,16 @@ public class Admin extends BaseServlet {
 
             render("Cupcake", "/WEB-INF/pages/admin.jsp", req, resp );
         }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("delete")!=null){
+            int orderToDelete=Integer.parseInt(req.getParameter("delete"));
+            api.deleteOrder(orderToDelete);
+            resp.sendRedirect(req.getContextPath() + "/Admin");
+
+        }
+
+        }
+
+
     }
