@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/Admin")
-public class Admin extends BaseServlet {
+
+@WebServlet("/Customers")
+public class Customers extends BaseServlet {
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
                 ServletException, IOException {
-            render("Cupcake", "/WEB-INF/pages/admin.jsp", req, resp );
+            render("Cupcake", "/WEB-INF/pages/customers.jsp", req, resp );
         }
     }
+

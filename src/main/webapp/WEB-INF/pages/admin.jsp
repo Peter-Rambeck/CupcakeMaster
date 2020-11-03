@@ -6,7 +6,7 @@
 </div>
 <div class="row">
     <h3 >Alle ordrer <br/>
-        Afslut ordre ved betaling</h3>
+        Vis og betal</h3>
 </div>
 <div class="row">
     <hr>
@@ -29,20 +29,13 @@
         Pris
     </div>
     <div class="col-md-1">
-        <a class="btn btn-light" href="" role="button">Vis ordre</a>
+        Vis ordre
     </div>
     <div class="col-md-2">
-        <form method="post">
-
-            <label for="payment">Indsæt betaling</label>
-            <input type="text" class="form-control" id="payment"
-                   aria-describedby="cashPayment" name="paid">
-            <button type="submit" class="btn btn-light">Betal</button>
-        </form>
-
+       Afhent
     </div>
     <div class="col-md-1">
-        Afhentet
+      Slet
     </div>
 </div>
 <hr>
@@ -63,19 +56,57 @@
         ${requestScope.price}
     </div>
     <div class="col-md-1">
-       N/A
+        <a class="btn btn-light" href="" role="button">Vis ordre</a>
     </div>
     <div class="col-md-2">
-        N/A
-    </div>
+        <a class="btn btn-light" href="" role="button">Afhent</a>    </div>
     <div class="col-md-1">
-        N/A
+        <a class="btn btn-light" href="" role="button">Slet</a>
     </div>
 </div>
 <hr>
 </div>
-<div class="row" style="align-content: center">
-    <a class="btn btn-primary" role="button">Afslut</a>
+
+
+<div class="row">
+    <hr>
+    <br>
 </div>
 
+<h3 >Ordrer</h3> <br/>
+
+<div class="row">
+    <div class="col-md-3">
+        Antal
+    </div>
+    <div class="col-md-3">
+        Bottom
+    </div>
+    <div class="col-md-3">
+        Topping
+    </div>
+    <div class="col-md-3">
+        Price
+    </div>
+
+</div>
+<hr>
+
+<c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje">
+    <div class="row">
+        <div class="col-md-3">
+                ${ordreLinje.quantity}
+        </div>
+        <div class="col-md-3">
+                ${ordreLinje.bottom.name}
+        </div>
+        <div class="col-md-3">
+                ${ordreLinje.top.name}
+        </div>
+        <div class="col-md-3">
+                ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
+        </div>
+    </div>
+</c:forEach>
+<hr>
 
