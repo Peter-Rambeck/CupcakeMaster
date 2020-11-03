@@ -64,11 +64,11 @@ public class ShoppingCart extends BaseServlet {
 
        if (req.getParameter("target")!=null)
         if(req.getParameter("target").equals("bestil")) {
-            Database db = new Database();
-            Cupcake cupcake= new Cupcake(new DBOrdreLinieRepository(db), new DBBottomRepository(db), new DBTopRepository(db),new DBCustomerRepository(db),new DBOrdreRepository(db));
             int ordre_id=0;
             try {
-                ordre_id=cupcake.commitShoppingCart(getShoppingCart(req), LocalDate.now(),1);//-----------
+                int customer_id=1;//----------
+                ordre_id=api.commitShoppingCart(getShoppingCart(req), LocalDate.now(),customer_id);
+                api.updateSaldo(customer_id, -api.getPrice(ordre_id));
             } catch (DBException e) {
                 e.printStackTrace();
             }

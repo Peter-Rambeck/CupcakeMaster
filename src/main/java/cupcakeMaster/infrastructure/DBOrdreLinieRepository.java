@@ -89,7 +89,7 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
     }
 
     @Override
-    public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato, int customer_id) throws DBException {
+    public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato,int customer_id) throws DBException {
         int ordre_id=0;
         try {
             Connection con = db.connect();
@@ -107,10 +107,10 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             throw new DBException(ex.getMessage());
         }
 
-        System.out.println(ordreLinier.size());
         for (OrdreLinie ordreLinie:ordreLinier ) {
             commit(ordreLinie,ordre_id);
         }
+
     return ordre_id;
     }
 

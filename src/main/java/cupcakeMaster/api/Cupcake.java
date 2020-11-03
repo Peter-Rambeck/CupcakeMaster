@@ -28,7 +28,24 @@ public class Cupcake {
         this.ordrer=ordrer;
     }
 
-    public int commitShoppingCart(List<OrdreLinie>ordreLinier, LocalDate dato, int customer_id) throws DBException {
+    public int getPrice(int Orderid) {
+        try {
+            Ordre ordre = findOrdre(Orderid);
+            List<OrdreLinie> ordreLinier = findOrdreLinierFromOrdreID(Orderid);
+            int price = 0;
+            for (OrdreLinie ordreLinie : ordreLinier) {
+                price = price + ordreLinie.getOrdrelinieSum();
+                return price;
+            }
+        }
+            catch (DBException e) {
+                e.printStackTrace();
+            } catch (NoOrdreExist noOrdreExist) {
+                noOrdreExist.printStackTrace();
+            }
+        return 0;
+    }
+    public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato, int customer_id) throws DBException {
         return orderlists.commitShoppingCart(ordreLinier,dato,customer_id);
     }
         public String getVersion() {
@@ -102,11 +119,39 @@ public class Cupcake {
 
 
 
-    public Customer findCustomer (String email) throws DBException, CustomerNotFoundException {
-        return customers.findCostumer(email);
+    public Customer findCustomer (String email)  {
+        try {
+            return customers.findCostumer(email);
+        } catch (CustomerNotFoundException e) {
+            e.printStackTrace();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public Customer commitCustomer(Customer customer) throws DBException, SQLException {
         return customers.commitCustomer(customer);
+    }
+
+    public Customer findCustomerFromID(int customer_id) {
+        try {
+            return customers.findCostumerFromID(customer_id);
+        } catch (CustomerNotFoundException e) {
+            e.printStackTrace();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void updateSaldo(int orderToUpdate, int price) {
+        try {
+            customers.updateSaldo(orderToUpdate,price);
+        } catch (CustomerNotFoundException e) {
+            e.printStackTrace();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 }
 

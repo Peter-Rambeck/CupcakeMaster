@@ -65,7 +65,10 @@
        </form>
     </div>
     <div class="col-md-2">
-        <a class="btn btn-light" href="" role="button">Afhent</a>
+        <form method="post" >
+            <input type="hidden" name="afslut" value="${order.ordre_id}">
+            <button type="submit" class="btn btn-primary" >Afslut</button>
+        </form>
     </div>
     <div class="col-md-1">
         <form method="post" >

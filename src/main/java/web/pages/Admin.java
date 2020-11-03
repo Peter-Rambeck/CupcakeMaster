@@ -4,6 +4,7 @@ import cupcakeMaster.domain.order.DBException;
 import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.Ordre;
 import cupcakeMaster.domain.order.OrdreLinie;
+import cupcakeMaster.domain.order.customer.Customer;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -63,6 +64,32 @@ public class Admin extends BaseServlet {
             api.deleteOrder(orderToDelete);
             resp.sendRedirect(req.getContextPath() + "/Admin");
         }
+
+        if(req.getParameter("afslut")!=null){
+            int orderToClose=Integer.parseInt(req.getParameter("afslut"));
+            Ordre ordre=null;
+            Customer customer=null;
+            try {
+                ordre=api.findOrdre(orderToClose);
+                List<OrdreLinie> ordreLinier=api.findOrdreLinierFromOrdreID(orderToClose);
+                int price=0;
+                for (OrdreLinie ordreLinie :ordreLinier) {
+                    price=price+ordreLinie.getOrdrelinieSum();
+                }
+
+
+                api.updateSaldo(ordre.getCustomer_id(),price);
+
+            } catch (DBException e) {
+                e.printStackTrace();
+            } catch (NoOrdreExist noOrdreExist) {
+                noOrdreExist.printStackTrace();
+            }
+
+            api.closeOrder(orderToClose);
+            resp.sendRedirect(req.getContextPath() + "/Admin");
+        }
+
         if(req.getParameter("vis")!=null){
             int orderToShow=Integer.parseInt(req.getParameter("vis"));
             var s = req.getSession();

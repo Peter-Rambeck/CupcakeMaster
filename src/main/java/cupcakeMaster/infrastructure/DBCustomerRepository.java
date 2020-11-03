@@ -2,6 +2,7 @@ package cupcakeMaster.infrastructure;
 
 import cupcakeMaster.domain.order.Bottom;
 import cupcakeMaster.domain.order.DBException;
+import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.customer.Customer;
 import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
 import cupcakeMaster.domain.order.customer.CustomerRepository;
@@ -47,6 +48,33 @@ public class DBCustomerRepository implements CustomerRepository {
     }
 
     @Override
+    public Customer findCostumerFromID(int customer_ID) throws CustomerNotFoundException, DBException {
+        try {
+            Connection con = db.connect();
+            String SQL = "SELECT * FROM customer WHERE customer_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,customer_ID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int customer_id=rs.getInt("customer_id");
+                String email=rs.getString("email");
+                boolean role=false;
+                if(rs.getString("role").equals("admin")){role=true;}
+                int saldo=rs.getInt("saldo");
+                byte[] secret=rs.getBytes("secret");
+                byte[] salt=rs.getBytes("salt");
+                Customer customer=new Customer(customer_id,email,saldo,role,salt,secret);
+
+
+                return customer;
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public Customer commitCustomer(Customer customer) throws DBException{
         try {
             Connection con = db.connect();
@@ -72,6 +100,24 @@ public class DBCustomerRepository implements CustomerRepository {
         }
 
         return null;
+
+    }
+
+    @Override
+    public void updateSaldo(int customer_id, int amount) throws CustomerNotFoundException, DBException {
+       try {
+            Customer customer=findCostumerFromID(customer_id);
+            Connection con = db.connect();
+            String SQL = "UPDATE customer  SET saldo=(?)WHERE customer_id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,customer.getSaldo()+amount);
+            ps.setInt(2,customer_id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new CustomerNotFoundException();
+        }
 
     }
 }
