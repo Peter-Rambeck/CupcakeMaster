@@ -140,4 +140,16 @@ public class Customer {
             sb.append(String.format("%02x", b));
         return sb.toString();
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", email='" + email + '\'' +
+                ", saldo=" + saldo +
+                ", salt=" + Arrays.toString(salt) +
+                ", secret=" + Arrays.toString(secret) +
+                ", admin=" + admin +
+                '}';
+    }
 }

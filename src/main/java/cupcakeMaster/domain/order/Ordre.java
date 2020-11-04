@@ -38,4 +38,7 @@ public class Ordre {
     public void setCustomer(int customer_id) {
         this.customer_id = customer_id;
     }
+
+    public int getCustomer_id() {return customer_id;
+    }
 }

@@ -89,14 +89,15 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
     }
 
     @Override
-    public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato, int customer_id) throws DBException {
+    public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato,int customer_id) throws DBException {
         int ordre_id=0;
         try {
             Connection con = db.connect();
-            String SQL = "INSERT INTO ordre (date, customer_id) VALUES (?,?)";
+            String SQL = "INSERT INTO ordre (date, customer_id,status) VALUES (?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(dato));
             ps.setInt(  2,customer_id);
+            ps.setString(3,"open");
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -106,10 +107,10 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             throw new DBException(ex.getMessage());
         }
 
-        System.out.println(ordreLinier.size());
         for (OrdreLinie ordreLinie:ordreLinier ) {
             commit(ordreLinie,ordre_id);
         }
+
     return ordre_id;
     }
 
