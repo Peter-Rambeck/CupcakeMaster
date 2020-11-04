@@ -1,13 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-md navbar-purple bg-dark fixed-top">
     <a class="navbar-brand" href="shoppingCart">Home</a>
+    <c:if test="${sessionScope.Customer.admin}" >
     <a class="navbar-brand" href="Admin">Ordrer</a>
     <a class="navbar-brand" href="Customers">Kunder</a>
+    </c:if>
+
+
+
+
+
 
         <div>
             ${sessionScope.Customer.email}
         </div>
-
+    <c:if test="${sessionScope.Customer!=null}">
+    <form method="post" action="<c:url value="/shoppingCart"/>" style="float: right">
+        <input type="hidden" name="logout" >
+        <button type="submit" class="btn btn-primary" >Log Ud</button>
+    </c:if>
+    </form>
+    <c:if test="${sessionScope.Customer==null}">
     <div class="nav-item dropdown " style="">
         <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown02" data-toggle="dropdown"
            aria-haspopup="true"
@@ -33,7 +46,7 @@
     </div>
 
 
-            <div class="nav-item dropdown " style="">
+            <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">Log Ind</a>
@@ -63,4 +76,5 @@
     </form>
     </div>
     -->
+</c:if>
 </nav>

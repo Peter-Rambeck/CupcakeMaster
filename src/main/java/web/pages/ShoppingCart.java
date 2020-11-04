@@ -75,12 +75,22 @@ public class ShoppingCart extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
         }
+        if (req.getParameter("logout")!=null) {
+            var s = req.getSession();
+            s.setAttribute("Customer",null);
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
+        }
         if (req.getParameter("email") != null) {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
             byte [] salt= Customer.generateSalt();
             byte [] secret = Customer.calculateSecret(salt, password);
+
             boolean admin = false;
+            if (email.equals("admin@admin.dk")) {
+               admin = true;
+           }
             Customer customer = new Customer(email,0, admin, salt, secret);
             try {
 
