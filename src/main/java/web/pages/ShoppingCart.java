@@ -75,12 +75,17 @@ public class ShoppingCart extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
         }
+
+        //logout
         if (req.getParameter("logout")!=null) {
             var s = req.getSession();
             s.setAttribute("Customer",null);
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
         }
+
+        // sign up....customer oprettes og role blievr sat til customer
+        // hvs email=2admin@admin.dk" sættes role til admin
         if (req.getParameter("email") != null) {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
@@ -93,15 +98,15 @@ public class ShoppingCart extends BaseServlet {
            }
             Customer customer = new Customer(email,0, admin, salt, secret);
             try {
-
-             customer = api.commitCustomer(customer);
+                customer = api.commitCustomer(customer);
+                var s = req.getSession();
+                s.setAttribute("Customer",customer);
             } catch (DBException e) {
                 e.printStackTrace();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            var s = req.getSession();
-            s.setAttribute("Customer",customer);
+
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
         }
