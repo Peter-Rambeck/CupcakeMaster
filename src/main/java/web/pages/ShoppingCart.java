@@ -66,6 +66,7 @@ public class ShoppingCart extends BaseServlet {
 
         //login er trykket
         if (req.getParameter("Loginemail")!=null) {
+            String nextpage="/shoppingCart";
             String email = req.getParameter("Loginemail");
             String password = req.getParameter("Loginpassword");
             Customer customer = api.findCustomer(email);
@@ -74,11 +75,13 @@ public class ShoppingCart extends BaseServlet {
                 if (correctpassword) {
                     var s = req.getSession();
                     s.setAttribute("Customer", customer);
-
+                    if(customer.isAdmin()){
+                        nextpage="/Admin";
+                    }
                 }
 
             }
-            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+            resp.sendRedirect(req.getContextPath() + nextpage);
 
         }
 
