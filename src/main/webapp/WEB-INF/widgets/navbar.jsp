@@ -5,16 +5,39 @@
     <a class="navbar-brand" href="Customers">Kunder</a>
 
 
+    <div class="nav-item dropdown " style="">
+        <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown02" data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">Opret Bruger</a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger ">
 
+            <form class="px-3 py-3" method="post" action="<c:url value="/shoppingCart"/>">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail2">Indtast Email</label>
+                    <input type="email" class="form-control" id="exampleDropdownFormEmail2"
+                           name="email"
+                           placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword2">Opret Kodeord</label>
+                    <input type="password" class="form-control" id="exampleDropdownFormPassword2"
+                           name="password"
+                           placeholder="Kodeord">
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </form>
+        </div>
+    </div>
 
     <c:choose>
         <%--@elvariable id="user" type="java.lang.String"--%>
         <c:when test="${user == null}">
-            <div class="nav-item dropdown-right" style="" >
+            <div class="nav-item dropdown " style="">
                 <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true"
-                   aria-expanded="false">Log In</a>
+                   aria-expanded="false">Log Ind</a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger">
+
                     <form class="px-3 py-3" method="post" action="<c:url value="/shoppingCart"/>">
                         <div class="form-group">
                             <label for="exampleDropdownFormEmail1">Email</label>
@@ -55,4 +78,5 @@
     </form>
     </div>
     -->
+
 </nav>
