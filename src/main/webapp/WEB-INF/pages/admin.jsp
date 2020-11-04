@@ -93,7 +93,7 @@
                     top
             </div>
             <div class="col-md-3">
-                    antal
+                    pris
             </div>
 
         </div>
