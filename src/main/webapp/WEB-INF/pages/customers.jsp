@@ -53,8 +53,8 @@
     </div>
     <div class="col-md-3">
         <form method="post">
-            <input type="text" class="form-control" id="" value=""
-                   aria-describedby="cashPayment" name="${customer.customerId}">
+
+            <input type="text" class="form-control" aria-describedby="cashPayment" name="paid">
         </form>
     </div>
 
