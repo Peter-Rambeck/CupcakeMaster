@@ -76,6 +76,16 @@ public class Cupcake {
         } catch (DBException e) {
             throw new RuntimeException(e);
         }
+
+}
+public Iterable<Customer> findAll() {
+        try {
+            return customers.findAll();
+        } catch (CustomerNotFoundException | DBException e) {
+            throw new RuntimeException();
+        }
+}
+
     }
 
     public void deleteOrder(int order_id){
@@ -100,6 +110,7 @@ public class Cupcake {
             throw new RuntimeException();
         }
     }
+
 
     public Top findTop(int parseInt) throws DBException {
         this.parseInt = parseInt;

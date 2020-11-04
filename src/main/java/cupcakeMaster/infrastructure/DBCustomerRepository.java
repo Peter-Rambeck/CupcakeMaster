@@ -10,6 +10,8 @@ import cupcakeMaster.domain.order.customer.CustomerRepository;
 import java.sql.*;
 import java.util.ArrayList;
 
+import java.util.List;
+
 public class DBCustomerRepository implements CustomerRepository {
     private final Database db;
     public DBCustomerRepository(Database db) {
@@ -45,6 +47,32 @@ public class DBCustomerRepository implements CustomerRepository {
             throw new DBException(ex.getMessage());
         }
         return null;
+    }
+
+
+    @Override
+    public Iterable<Customer> findAll() throws CustomerNotFoundException, DBException {
+        List<Customer> customerList = new ArrayList<>();
+        try {
+            Connection con = db.connect();
+            String SQL = "SELECT * FROM customer";
+            PreparedStatement ps = con.prepareStatement(SQL);
+             ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+                int customer_id = rs.getInt("customer_id");
+                String email = rs.getString("email");
+                boolean role = false;
+                // if(rs.getString("role").equals("admin")){role=true;}
+                int saldo=rs.getInt("saldo");
+                byte[] secret=rs.getBytes("secret");
+                byte[] salt=rs.getBytes("salt");
+                Customer customer = new Customer(customer_id,email,saldo,role,salt,secret);
+                customerList.add(customer);
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return customerList;
     }
 
     @Override
