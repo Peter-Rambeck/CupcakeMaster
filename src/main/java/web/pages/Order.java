@@ -4,6 +4,7 @@ import cupcakeMaster.domain.order.DBException;
 import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.Ordre;
 import cupcakeMaster.domain.order.OrdreLinie;
+import cupcakeMaster.domain.order.customer.Customer;
 import cupcakeMaster.infrastructure.*;
 import web.BaseServlet;
 import javax.servlet.ServletException;
@@ -30,7 +31,8 @@ public class Order extends BaseServlet {
             ordreLinies=api.findOrdreLinierFromOrdreID(order_ID);
             req.setAttribute("orderID",order_ID);
             req.setAttribute("orderDate",order.getDate());
-            req.setAttribute("email","testtttttttt");//------------------------------
+            Customer customer= (Customer) s.getAttribute("Customer");
+            req.setAttribute("email",customer.getEmail());//------------------------------
             int q=0;
             int sum=0;
             for (OrdreLinie ordrelinie:ordreLinies) {

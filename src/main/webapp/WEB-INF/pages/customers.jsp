@@ -50,12 +50,15 @@
                         ${customer.saldo}
                 </option>
             </c:forEach>
+
     </div>
     <div class="col-md-3">
-        <form method="post">
-
-            <input type="text" class="form-control" aria-describedby="cashPayment" name="paid">
-        </form>
+        <c:forEach  items="${requestScope.customers}" var="customer">
+            <form method="post">
+                <input type="hidden" name="customer_id" value="${customer.customerId}">
+                <input type="text" class="form-control" aria-describedby="cashPayment" name="paid">
+            </form>
+        </c:forEach>
     </div>
 
     </div>

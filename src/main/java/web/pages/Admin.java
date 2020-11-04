@@ -23,6 +23,8 @@ public class Admin extends BaseServlet {
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             var s = req.getSession();
+            Customer customer= (Customer) s.getAttribute("Customer");
+
             if(s.getAttribute("orderToShow")==null)
             s.setAttribute("orderToShow",0);
 
@@ -54,8 +56,11 @@ public class Admin extends BaseServlet {
             req.setAttribute("email",emails);
             req.setAttribute("quantity",quantitys);
             req.setAttribute("price",prices);
+            if((customer!=null)&& (customer.isAdmin())){
+                 render("Cupcake", "/WEB-INF/pages/admin.jsp", req, resp );}
+            else {
+                 render("Cupcake", "/WEB-INF/pages/index.jsp", req, resp );}
 
-            render("Cupcake", "/WEB-INF/pages/admin.jsp", req, resp );
         }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

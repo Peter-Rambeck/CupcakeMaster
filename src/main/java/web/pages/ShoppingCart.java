@@ -108,19 +108,24 @@ public class ShoppingCart extends BaseServlet {
             if (req.getParameter("target") != null)
                 if (req.getParameter("target").equals("bestil")) {
                     int ordre_id = 0;
-                    try {
-                        int customer_id = 1;//----------
-                        ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
-                        api.updateSaldo(customer_id, -api.getPrice(ordre_id));
-                    } catch (DBException e) {
-                        e.printStackTrace();
-                    }
                     var s = req.getSession();
-                    s.setAttribute("orderID", ordre_id);
-                    s.setAttribute("shoppingCart", null);
-                    resp.sendRedirect(req.getContextPath() + "/order");
-                }
+                    Customer customer = (Customer) s.getAttribute("Customer");
+                    if (customer != null) {
+                        try {
 
+                            int customer_id = customer.getCustomerId();
+                            ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
+                            api.updateSaldo(customer_id, -api.getPrice(ordre_id));
+                        } catch (DBException e) {
+                            e.printStackTrace();
+                        }
+                        s.setAttribute("orderID", ordre_id);
+                        s.setAttribute("shoppingCart", null);
+                        resp.sendRedirect(req.getContextPath() + "/order");
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+                    }
+                }
 
             if (req.getParameter("delete") != null) {
                 int lineToDelete = Integer.parseInt(req.getParameter("delete"));
