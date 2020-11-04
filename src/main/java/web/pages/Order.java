@@ -32,7 +32,7 @@ public class Order extends BaseServlet {
             req.setAttribute("orderID",order_ID);
             req.setAttribute("orderDate",order.getDate());
             Customer customer= (Customer) s.getAttribute("Customer");
-            req.setAttribute("email",customer.getEmail());//------------------------------
+            req.setAttribute("email",customer.getEmail());
             int q=0;
             int sum=0;
             for (OrdreLinie ordrelinie:ordreLinies) {

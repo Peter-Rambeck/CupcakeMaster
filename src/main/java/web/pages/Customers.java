@@ -21,7 +21,6 @@ public class Customers extends BaseServlet {
          req.setAttribute("customers", api.findAll());
         var s = req.getSession();
         Customer customer= (Customer) s.getAttribute("Customer");
-        System.out.println(customer);
         if((customer!=null)&&(customer.isAdmin())){
              render("Cupcake", "/WEB-INF/pages/customers.jsp", req, resp );}
         else {

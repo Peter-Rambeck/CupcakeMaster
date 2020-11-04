@@ -29,39 +29,26 @@
 
 </div>
 <hr>
-<div class="row">
-    <div class="col-md-3">
-        <c:forEach  items="${requestScope.customers}" var="customer">
-            <option value="${customerId}">
-                    ${customer.customerId}
-            </option>
-        </c:forEach>
+<c:forEach  items="${requestScope.customers}" var="customer" varStatus="loop">
+    <div class="row">
+        <div class="col-md-3">
+             ${customer.customerId}
+        </div>
+        <div class="col-md-3">
+            ${customer.email}
+        </div>
+        <div class="col-md-3">
+            ${customer.saldo}
+        </div>
+        <div class="col-md-3">
+        <form method="post">
+            <input type="hidden" name="customer_id" value="${customer.customerId}">
+            <input type="text" class="form-control" aria-describedby="cashPayment" name="paid">
+        </form>
+        </div>
     </div>
-    <div class="col-md-3">
-        <c:forEach  items="${requestScope.customers}" var="customer">
-            <option value="${customerId}">
-                    ${customer.email}
-            </option>
-        </c:forEach>
-    </div>
-    <div class="col-md-3">
-            <c:forEach  items="${requestScope.customers}" var="customer">
-                <option value="${customerId}">
-                        ${customer.saldo}
-                </option>
-            </c:forEach>
+</c:forEach>
 
-    </div>
-    <div class="col-md-3">
-        <c:forEach  items="${requestScope.customers}" var="customer">
-            <form method="post">
-                <input type="hidden" name="customer_id" value="${customer.customerId}">
-                <input type="text" class="form-control" aria-describedby="cashPayment" name="paid">
-            </form>
-        </c:forEach>
-    </div>
 
-    </div>
-</div>
 <hr>
 </div>

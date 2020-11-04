@@ -46,6 +46,7 @@ public class ShoppingCart extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //tilføj ordrelinie til shoppingcart
         if (req.getParameter("target") != null)
             if (req.getParameter("target").equals("shoppingCart")) {
                 String number = req.getParameter("number");
@@ -62,14 +63,19 @@ public class ShoppingCart extends BaseServlet {
 
                 resp.sendRedirect(req.getContextPath() + "/shoppingCart");
             }
+
+        //login er trykket
         if (req.getParameter("Loginemail")!=null) {
             String email = req.getParameter("Loginemail");
             String password = req.getParameter("Loginpassword");
             Customer customer = api.findCustomer(email);
-            boolean correctpassword = customer.checkPassword(password);
-            if (correctpassword) {
-                var s = req.getSession();
-                s.setAttribute("Customer",customer);
+            if(customer!=null) {
+                boolean correctpassword = customer.checkPassword(password);
+                if (correctpassword) {
+                    var s = req.getSession();
+                    s.setAttribute("Customer", customer);
+
+                }
 
             }
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
@@ -91,7 +97,6 @@ public class ShoppingCart extends BaseServlet {
             String password = req.getParameter("password");
             byte [] salt= Customer.generateSalt();
             byte [] secret = Customer.calculateSecret(salt, password);
-
             boolean admin = false;
             if (email.equals("admin@admin.dk")) {
                admin = true;
@@ -106,10 +111,10 @@ public class ShoppingCart extends BaseServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
-
         }
+
+            // bestil det der er i shoppingcart....gøres kun hvis nogen er logget ind
             if (req.getParameter("target") != null)
                 if (req.getParameter("target").equals("bestil")) {
                     int ordre_id = 0;
@@ -132,6 +137,7 @@ public class ShoppingCart extends BaseServlet {
                     }
                 }
 
+            // delete valgte ordrlinie i shoppingcart
             if (req.getParameter("delete") != null) {
                 int lineToDelete = Integer.parseInt(req.getParameter("delete"));
                 getShoppingCart(req).remove(lineToDelete);
