@@ -21,7 +21,7 @@
         Email
     </div>
     <div class="col-md-3">
-        udestående
+        Saldo
     </div>
     <div class="col-md-3">
            Indsæt betaling
@@ -53,8 +53,8 @@
     </div>
     <div class="col-md-3">
         <form method="post">
-            <input type="number" class="form-control" id="payment"
-                   aria-describedby="cashPayment" name="paid">
+            <input type="text" class="form-control" id="" value=""
+                   aria-describedby="cashPayment" name="${customer.customerId}">
         </form>
     </div>
 

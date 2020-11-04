@@ -1,14 +1,11 @@
 
-Q
-java:S1128"6Remove this unused import 'cupcakeMaster.api.Cupcake'.(ú‘‘Ø8€Üÿ×Ø.
-[
-java:S1128";Remove this unused import 'cupcakeMaster.domain.order.Top'.(ÁÌå‚ùÿÿÿÿ8€Üÿ×Ø.
+X	java:S1259"<This block of commented-out lines of code should be removed.(˜¤ƒ8ôðöõØ.
+}
+java:S19894"`Handle the following exceptions that could be thrown by "render": ServletException, IOException.(ž›œü8ôðöõØ.
+S
+java:S1128"6Remove this unused import 'cupcakeMaster.api.Cupcake'.(ú‘‘Ø8ôðöõØ.
 R
-java:S1854"8Remove this useless assignment to local variable "date".(ÍêÄL8€Üÿ×Ø.
-[	java:S125"<This block of commented-out lines of code should be removed.(”ïá§üÿÿÿÿ8€Üÿ×Ø.
-[	java:S125"<This block of commented-out lines of code should be removed.(ØÆ¹Ãüÿÿÿÿ8€Üÿ×Ø.
-{
-java:S1989"`Handle the following exceptions that could be thrown by "render": ServletException, IOException.(ž›œü8€Üÿ×Ø.
-V	java:S125"<This block of commented-out lines of code should be removed.(˜¤ƒ8€Üÿ×Ø.
-C
-java:S1481")Remove this unused "date" local variable.(ÍêÄL8€Üÿ×Ø.
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ8ôðöõØ.
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß…Ý–8ôðöõØ.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ôðöõØ.

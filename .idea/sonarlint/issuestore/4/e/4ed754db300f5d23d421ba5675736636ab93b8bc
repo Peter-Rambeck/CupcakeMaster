@@ -1,3 +1,16 @@
 
+u
+java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(àÖŞ—ûÿÿÿÿ8´µÚ€Ù.
+d
+java:S1128"BRemove this unused import 'cupcakeMaster.domain.order.OrdreLinie'.(íäĞúÿÿÿÿ8ç—öØ.
+k
+java:S1128"IRemove this unused import 'cupcakeMaster.domain.order.customer.Customer'.(ÄŸ³Øùÿÿÿÿ8¸É•ÿØ.
+v
+java:S1989"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(›…•Ä8Ş‘ÔÿØ.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ˆˆõøÿÿÿÿ8±Ê»ÿØ.
+_
+java:S1128"=Remove this unused import 'cupcakeMaster.domain.order.Ordre'.(Ü«È±ıÿÿÿÿ8ï¹ŒöØ.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¹ÔöØ.
 ‚
-java:S1989"`Handle the following exceptions that could be thrown by "render": ServletException, IOException.(»¦™ûÿÿÿÿ8èñØ.
+java:S1989"`Handle the following exceptions that could be thrown by "render": ServletException, IOException.(»¦™ûÿÿÿÿ8ø‚©öØ.

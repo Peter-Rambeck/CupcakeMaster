@@ -25,8 +25,11 @@ public class Customers extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int tralala = Integer.parseInt(req.getParameter("paid"));
-        System.out.println(tralala);
+        int paid = Integer.parseInt(req.getParameter("value"));
+        int custuomerId = Integer.parseInt(req.getParameter("name"));
+
+        System.out.println(paid);
+        System.out.println(custuomerId);
 
         resp.sendRedirect(req.getContextPath() + "/Customers");
 

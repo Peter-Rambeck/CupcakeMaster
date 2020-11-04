@@ -35,7 +35,19 @@ Z
 *src/main/webapp/WEB-INF/widgets/navbar.jsp,8\4\84747e1760d99ae62d72f816549a991339b720d3
 [
 +src/main/webapp/WEB-INF/pages/customers.jsp,d\9\d913c239c3471be230e7ca87d6ddd82a7d784077
-ã
-[src/main/java/web/pages/Customers (Conflicted copy from DESKTOP-QKQKDOJ on 2020-11-03).java,6\0\601318be200506deddbb5baad40b044100c7b226
 V
 &src/main/java/web/pages/Customers.java,4\e\4ed754db300f5d23d421ba5675736636ab93b8bc
+n
+>src/main/java/cupcakeMaster/domain/order/BottomRepository.java,6\6\66542ef6cd192f943b29fe9e2736f8d371c5e597
+n
+>src/main/java/cupcakeMaster/domain/order/OrdreLineFactory.java,4\1\41c8190b77fdf5c0d24577218fe1b25e29de4199
+o
+?src/main/java/cupcakeMaster/domain/order/customer/Customer.java,c\9\c9f0c5629808bcd9dc9360cfa9a62f4d8a453367
+y
+Isrc/main/java/cupcakeMaster/domain/order/customer/CustomerRepository.java,7\8\7858a951f2e376b486332e7044914cc1b990fc96
+j
+:.idea/dataSources/da71e61c-21b2-4c67-b7b3-2a49459fd411.xml,d\e\dead0d800dc0e063c3945f57f5d5003ed302c689
+t
+Dsrc/main/java/cupcakeMaster/infrastructure/DBCustomerRepository.java,f\4\f433c2b7d46cd144c39226fd57d352285053e5ac
+ù
+m.idea/dataSources/da71e61c-21b2-4c67-b7b3-2a49459fd411/storage_v2/_src_/schema/information_schema.FNRwLQ.meta,7\c\7c6f13d6d7df007682cb37f79c5f68a978752f00
