@@ -86,7 +86,7 @@ public Iterable<Customer> findAll() {
         }
 }
 
-    }
+
 
     public void deleteOrder(int order_id){
         try {
