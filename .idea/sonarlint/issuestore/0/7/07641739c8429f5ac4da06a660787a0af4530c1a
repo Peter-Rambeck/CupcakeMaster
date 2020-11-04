@@ -1,13 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÔÅˆ»
-`	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-m
-java:S1450"WRemove the "parseInt" field and declare it as a local variable in the relevant methods.(Ùú½ø
-m	java:S117G"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÍ‰¹8æøñØ.
-g	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(¯åÕøÿÿÿÿ8ÅòØ.
-œ
-java:S1130C"Remove the declaration of thrown exception 'cupcakeMaster.domain.order.DBException', as it cannot be thrown from method's body.(šÊ©©8æøñØ.
-`	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-B
-java:S1068",Remove this unused "parseInt" private field.(Ùú½ø
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê˜Óòúÿÿÿÿ

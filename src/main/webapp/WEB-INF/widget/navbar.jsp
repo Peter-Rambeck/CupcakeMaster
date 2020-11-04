@@ -32,8 +32,10 @@
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle btn btn-secondary" href="#" id="dropdown01" data-toggle="dropdown"
                    aria-haspopup="true"
-                   aria-expanded="false">Log In</a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger">
+                   aria-expanded="false" >Log In</a>
+
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger" >
+
                     <form class="px-3 py-3" method="post" action="<c:url value="/shoppingCart"/>">
                         <div class="form-group">
                             <label for="exampleDropdownFormEmail1">Email</label>
