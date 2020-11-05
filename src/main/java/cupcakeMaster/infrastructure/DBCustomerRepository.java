@@ -1,11 +1,9 @@
 package cupcakeMaster.infrastructure;
 
-import cupcakeMaster.domain.order.Bottom;
-import cupcakeMaster.domain.order.DBException;
-import cupcakeMaster.domain.order.NoOrdreExist;
-import cupcakeMaster.domain.order.customer.Customer;
-import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
-import cupcakeMaster.domain.order.customer.CustomerRepository;
+import cupcakeMaster.domain.DBException;
+import cupcakeMaster.domain.Customer;
+import cupcakeMaster.domain.CustomerNotFoundException;
+import cupcakeMaster.domain.CustomerRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -62,7 +60,7 @@ public class DBCustomerRepository implements CustomerRepository {
                 int customer_id = rs.getInt("customer_id");
                 String email = rs.getString("email");
                 boolean role = false;
-                // if(rs.getString("role").equals("admin")){role=true;}
+                if(rs.getString("role").equals("admin")){role=true;}
                 int saldo=rs.getInt("saldo");
                 byte[] secret=rs.getBytes("secret");
                 byte[] salt=rs.getBytes("salt");

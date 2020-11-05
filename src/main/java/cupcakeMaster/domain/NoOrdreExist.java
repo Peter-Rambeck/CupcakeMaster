@@ -1,4 +1,4 @@
-package cupcakeMaster.domain.order;
+package cupcakeMaster.domain;
 
 public class NoOrdreExist extends Exception {
 }

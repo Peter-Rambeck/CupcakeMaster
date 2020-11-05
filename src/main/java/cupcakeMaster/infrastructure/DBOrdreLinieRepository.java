@@ -1,6 +1,6 @@
 package cupcakeMaster.infrastructure;
 
-import cupcakeMaster.domain.order.*;
+import cupcakeMaster.domain.*;
 
 import java.sql.*;
 import java.time.LocalDate;

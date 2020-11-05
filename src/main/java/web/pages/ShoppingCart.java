@@ -1,15 +1,12 @@
 package web.pages;
 
-import cupcakeMaster.api.Cupcake;
 import cupcakeMaster.api.Utils;
-import cupcakeMaster.domain.order.*;
-import cupcakeMaster.domain.order.customer.Customer;
-import cupcakeMaster.infrastructure.*;
+import cupcakeMaster.domain.DBException;
+import cupcakeMaster.domain.OrdreLinie;
+import cupcakeMaster.domain.Customer;
 import web.BaseServlet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -18,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/shoppingCart")
+@WebServlet({"/shoppingCart",""})
 public class ShoppingCart extends BaseServlet {
 
     public static List<OrdreLinie> getShoppingCart(HttpServletRequest req) {

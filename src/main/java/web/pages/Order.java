@@ -1,9 +1,9 @@
 package web.pages;
-import cupcakeMaster.domain.order.DBException;
-import cupcakeMaster.domain.order.NoOrdreExist;
-import cupcakeMaster.domain.order.Ordre;
-import cupcakeMaster.domain.order.OrdreLinie;
-import cupcakeMaster.domain.order.customer.Customer;
+import cupcakeMaster.domain.DBException;
+import cupcakeMaster.domain.NoOrdreExist;
+import cupcakeMaster.domain.Ordre;
+import cupcakeMaster.domain.OrdreLinie;
+import cupcakeMaster.domain.Customer;
 import web.BaseServlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

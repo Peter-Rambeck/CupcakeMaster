@@ -1,11 +1,12 @@
-package cupcakeMaster.domain.order;
+package cupcakeMaster.domain;
 
-public class Top {
+public class Bottom {
     int id;
     String name;
     int price;
 
-    public Top(int id, String name, int price) {
+
+    public Bottom(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -37,7 +38,7 @@ public class Top {
 
     @Override
     public String toString() {
-        return "Top{" +
+        return "Bottom{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

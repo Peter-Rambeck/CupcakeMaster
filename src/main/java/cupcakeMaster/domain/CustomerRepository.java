@@ -1,8 +1,4 @@
-package cupcakeMaster.domain.order.customer;
-
-import cupcakeMaster.domain.order.DBException;
-import cupcakeMaster.domain.order.customer.Customer;
-import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
+package cupcakeMaster.domain;
 
 import java.sql.SQLException;
 

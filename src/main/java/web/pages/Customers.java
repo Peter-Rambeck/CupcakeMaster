@@ -1,8 +1,6 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.Ordre;
-import cupcakeMaster.domain.order.OrdreLinie;
-import cupcakeMaster.domain.order.customer.Customer;
+import cupcakeMaster.domain.Customer;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -10,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/Customers")
 public class Customers extends BaseServlet {
