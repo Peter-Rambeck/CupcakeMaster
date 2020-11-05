@@ -1,6 +1,4 @@
-package cupcakeMaster.domain.order;
-import cupcakeMaster.domain.order.*;
-import java.util.ArrayList;
+package cupcakeMaster.domain;
 
 public interface TopRepository {
     Iterable <Top> findAll() throws DBException;

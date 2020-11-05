@@ -1,4 +1,4 @@
-package cupcakeMaster.domain.order;
+package cupcakeMaster.domain;
 
 public abstract class OrdreLineFactory {
 

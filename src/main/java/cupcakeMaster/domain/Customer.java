@@ -1,4 +1,4 @@
-package cupcakeMaster.domain.order.customer;
+package cupcakeMaster.domain;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

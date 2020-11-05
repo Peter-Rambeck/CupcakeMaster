@@ -1,10 +1,10 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.DBException;
-import cupcakeMaster.domain.order.NoOrdreExist;
-import cupcakeMaster.domain.order.Ordre;
-import cupcakeMaster.domain.order.OrdreLinie;
-import cupcakeMaster.domain.order.customer.Customer;
+import cupcakeMaster.domain.DBException;
+import cupcakeMaster.domain.NoOrdreExist;
+import cupcakeMaster.domain.Ordre;
+import cupcakeMaster.domain.OrdreLinie;
+import cupcakeMaster.domain.Customer;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -42,7 +42,8 @@ public class Admin extends BaseServlet {
             List<Integer>prices=new ArrayList<>();
             for (Ordre ordre :orders ) {
                 LocalDate pickUPDate=ordre.getDate().plusDays(1);pickupdates.add(pickUPDate);
-                String email="gfnslnfl";emails.add(email);
+                String email=api.findCustomerFromID(ordre.getCustomer_id()).getEmail();
+                emails.add(email);
                 Integer quantity=0;
                 Integer price=0;
                 for (OrdreLinie ordreLinie:openordersandlines.get(ordre.getOrdre_id())){

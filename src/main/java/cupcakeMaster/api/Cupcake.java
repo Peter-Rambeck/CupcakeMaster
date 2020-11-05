@@ -1,12 +1,8 @@
 package cupcakeMaster.api;
-import cupcakeMaster.domain.order.*;
-import cupcakeMaster.domain.order.customer.Customer;
-import cupcakeMaster.domain.order.customer.CustomerNotFoundException;
-import cupcakeMaster.domain.order.customer.CustomerRepository;
+import cupcakeMaster.domain.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

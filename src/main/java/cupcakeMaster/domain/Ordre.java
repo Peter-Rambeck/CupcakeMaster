@@ -1,6 +1,4 @@
-package cupcakeMaster.domain.order;
-
-import cupcakeMaster.domain.order.customer.Customer;
+package cupcakeMaster.domain;
 
 import java.time.LocalDate;
 

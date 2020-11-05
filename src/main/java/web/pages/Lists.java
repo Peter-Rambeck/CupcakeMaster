@@ -1,8 +1,5 @@
 package web.pages;
 
-import cupcakeMaster.domain.order.Bottom;
-import cupcakeMaster.domain.order.OrdreLinie;
-import cupcakeMaster.domain.order.Top;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
