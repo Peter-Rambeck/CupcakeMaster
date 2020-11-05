@@ -1,10 +1,9 @@
 package web.pages;
-import cupcakeMaster.api.Cupcake;
 import cupcakeMaster.domain.order.DBException;
 import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.Ordre;
 import cupcakeMaster.domain.order.OrdreLinie;
-import cupcakeMaster.infrastructure.*;
+import cupcakeMaster.domain.order.customer.Customer;
 import web.BaseServlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import static web.pages.ShoppingCart.getShoppingCart;
 @WebServlet({"/order", "/order/*"})
 public class Order extends BaseServlet {
     @Override
@@ -24,13 +20,17 @@ public class Order extends BaseServlet {
         var s = req.getSession();
         Ordre order;
         List<OrdreLinie> ordreLinies;
-        int order_ID= (int) s.getAttribute("orderID");
+        int order_ID=0;
+        if(s.getAttribute("orderID")!=null)
         try {
+            order_ID= (int) s.getAttribute("orderID");
+            if(s.getAttribute("orderID")!=null){ order_ID= (int) s.getAttribute("orderID");}
             order=api.findOrdre(order_ID);
             ordreLinies=api.findOrdreLinierFromOrdreID(order_ID);
             req.setAttribute("orderID",order_ID);
             req.setAttribute("orderDate",order.getDate());
-            req.setAttribute("email","testtttttttt");//------------------------------
+            Customer customer= (Customer) s.getAttribute("Customer");
+            req.setAttribute("email",customer.getEmail());
             int q=0;
             int sum=0;
             for (OrdreLinie ordrelinie:ordreLinies) {
@@ -43,9 +43,17 @@ public class Order extends BaseServlet {
 
 
         } catch (DBException e) {
-            e.printStackTrace();
+
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+//            e.printStackTrace();
         } catch (NoOrdreExist noOrdreExist) {
-            noOrdreExist.printStackTrace();
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
+           // noOrdreExist.printStackTrace();
+        }catch (NumberFormatException e) {
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
+            // noOrdreExist.printStackTrace();
         }
 
 
@@ -53,11 +61,9 @@ public class Order extends BaseServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
-        List<OrdreLinie> orders = ShoppingCart.getShoppingCart(req);
-        /// save to database
-        int orderId = 0; //...
-        // get order id
-         */
+        var s = req.getSession();
+        s.setAttribute("orderID",null);
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
     }
 }

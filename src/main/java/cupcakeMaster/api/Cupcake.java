@@ -20,6 +20,8 @@ public class Cupcake {
     private final OrdreRepository ordrer;
     private int parseInt;
 
+
+    //bruges til at inatantierer  de repositories api bruger
     public Cupcake(OrdreLinieRepository orderlists, BottomRepository buttoms, TopRepository tops,CustomerRepository customers,OrdreRepository ordrer) {
         this.orderlists = orderlists;
         this.bottoms = buttoms;
@@ -28,30 +30,33 @@ public class Cupcake {
         this.ordrer=ordrer;
     }
 
+     //løber alle ordelinier i ordren igennem og lægger deres priser sammen,
+    // returnerer den samlede pris
     public int getPrice(int Orderid) {
+        int price = 0;
         try {
-            Ordre ordre = findOrdre(Orderid);
             List<OrdreLinie> ordreLinier = findOrdreLinierFromOrdreID(Orderid);
-            int price = 0;
             for (OrdreLinie ordreLinie : ordreLinier) {
                 price = price + ordreLinie.getOrdrelinieSum();
-                return price;
             }
         }
-            catch (DBException e) {
-                e.printStackTrace();
-            } catch (NoOrdreExist noOrdreExist) {
+            catch (NoOrdreExist noOrdreExist) {
                 noOrdreExist.printStackTrace();
             }
-        return 0;
+        return price;
     }
+
+    // kalder bare commitshoppingcart i OrdreLinieRepositiry
     public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato, int customer_id) throws DBException {
         return orderlists.commitShoppingCart(ordreLinier,dato,customer_id);
     }
-        public String getVersion() {
+
+
+    public String getVersion() {
         return VERSION;
     }
 
+    //kalder bare allTops i Toprepository
     public Iterable<Top> allTops() {
         try {
             return tops.findAll();
@@ -60,6 +65,7 @@ public class Cupcake {
         }
     }
 
+    //laver et hashmap over åbne ordre og lister med deres ordrelinier
     public HashMap<Integer,List<OrdreLinie>> findOpenOrdersAndOrdreLines() throws NoOrdreExist {
         HashMap<Integer,List<OrdreLinie>> ordreMap=new HashMap<>();
         Iterable<Ordre> orders=findOpenOrders();
@@ -76,18 +82,19 @@ public class Cupcake {
         } catch (DBException e) {
             throw new RuntimeException(e);
         }
+    }
 
-}
-public Iterable<Customer> findAll() {
-        try {
-            return customers.findAll();
-        } catch (CustomerNotFoundException | DBException e) {
-            throw new RuntimeException();
-        }
-}
+    // finder alle customers
+    public Iterable<Customer> findAll() {
+            try {
+                return customers.findAll();
+            } catch (CustomerNotFoundException | DBException e) {
+                throw new RuntimeException();
+            }
+    }
 
 
-
+    // sætter ordre status til deleted vha ordreRepository
     public void deleteOrder(int order_id){
         try {
             ordrer.updateOrdreStatus(order_id,"deleted");
@@ -95,6 +102,7 @@ public Iterable<Customer> findAll() {
             noOrdreExist.printStackTrace();
         }
     }
+    // sætter ordre status til closed vha ordreRepository
     public void closeOrder(int order_id){
         try {
             ordrer.updateOrdreStatus(order_id,"closed");
@@ -103,6 +111,7 @@ public Iterable<Customer> findAll() {
         }
     }
 
+    //finder alle ordrer hvsi status er open vha ordrerepository
     public List<Ordre> findOpenOrders() {
         try {
             return ordrer.findAll();
@@ -127,8 +136,6 @@ public Iterable<Customer> findAll() {
     public List<OrdreLinie> findOrdreLinierFromOrdreID(int ordre_ID) throws NoOrdreExist {
         return orderlists.findFromOrdreID(ordre_ID);
     }
-
-
 
     public Customer findCustomer (String email)  {
         try {

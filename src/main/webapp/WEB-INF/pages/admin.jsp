@@ -83,32 +83,32 @@
 </div>
     <c:if test="${order.ordre_id==sessionScope.orderToShow}">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-1">
                     antal
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
                     bund
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
                     top
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
                     pris
             </div>
 
         </div>
         <c:forEach items="${sessionScope.orderlinestoshow}" var="ordreLinje" varStatus="loop">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-1">
                         ${ordreLinje.quantity}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                         ${ordreLinje.bottom.name}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                         ${ordreLinje.top.name}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                         ${(ordreLinje.bottom.price+ordreLinje.top.price)*ordreLinje.quantity}
                 </div>
 
@@ -117,7 +117,7 @@
             </div>
             </div>
         </c:forEach>
-        <br>
+        <hr>
     </c:if>
 </c:forEach>
 
@@ -126,8 +126,3 @@
 
 
 </div>
-<hr>
-
-
-<hr>
-

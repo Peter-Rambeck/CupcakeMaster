@@ -1,6 +1,7 @@
 package web.pages;
 
 import cupcakeMaster.api.Cupcake;
+import cupcakeMaster.api.Utils;
 import cupcakeMaster.domain.order.*;
 import cupcakeMaster.domain.order.customer.Customer;
 import cupcakeMaster.infrastructure.*;
@@ -21,12 +22,19 @@ import java.util.List;
 public class ShoppingCart extends BaseServlet {
 
     public static List<OrdreLinie> getShoppingCart(HttpServletRequest req) {
+        //hent og returner valgte ordreliiner, hvis ingen, returner tom ny liste,
+        //og udregn samlet pris for linjerne og egm dem på sessionen
         var s = req.getSession();
         List<OrdreLinie> shoppingCart = (List<OrdreLinie>) s.getAttribute("shoppingCart");
         if (shoppingCart == null) {
             shoppingCart = new ArrayList<>();
             s.setAttribute("shoppingCart", shoppingCart);
         }
+        int sum=0;
+        for (OrdreLinie ordrelinie:shoppingCart) {
+            sum=sum+(ordrelinie.getOrdrelinieSum());
+        }
+        s.setAttribute("shoppingcartSum",sum);
         return shoppingCart;
     }
 
@@ -36,16 +44,13 @@ public class ShoppingCart extends BaseServlet {
         getShoppingCart(req);
         req.setAttribute("topping", api.allTops());
         req.setAttribute("bottom", api.allBottoms());
-        try {
-            System.out.println("size of map" + api.findOpenOrdersAndOrdreLines().size());
-        } catch (NoOrdreExist noOrdreExist) {
-            noOrdreExist.printStackTrace();
-        }
+
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //tilføj ordrelinie til shoppingcart
         if (req.getParameter("target") != null)
             if (req.getParameter("target").equals("shoppingCart")) {
                 String number = req.getParameter("number");
@@ -62,66 +67,85 @@ public class ShoppingCart extends BaseServlet {
 
                 resp.sendRedirect(req.getContextPath() + "/shoppingCart");
             }
+
+        //login er trykket
         if (req.getParameter("Loginemail")!=null) {
+            String nextpage="/shoppingCart";
             String email = req.getParameter("Loginemail");
             String password = req.getParameter("Loginpassword");
             Customer customer = api.findCustomer(email);
-            boolean correctpassword = customer.checkPassword(password);
-            if (correctpassword) {
-                var s = req.getSession();
-                s.setAttribute("Customer",customer);
+            if(customer!=null) {
+                boolean correctpassword = customer.checkPassword(password);
+                if (correctpassword) {
+                    var s = req.getSession();
+                    s.setAttribute("Customer", customer);
+                    if(customer.isAdmin()){
+                        nextpage="/Admin";
+                    }
+                }
 
             }
-            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+            resp.sendRedirect(req.getContextPath() + nextpage);
 
         }
+
+        //logout
         if (req.getParameter("logout")!=null) {
             var s = req.getSession();
             s.setAttribute("Customer",null);
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
         }
+
+        // sign up....customer oprettes og role blievr sat til customer
+        // hvs email=2admin@admin.dk" sættes role til admin
         if (req.getParameter("email") != null) {
             String email = req.getParameter("email");
+            email= Utils.encodeHtml(email);
             String password = req.getParameter("password");
             byte [] salt= Customer.generateSalt();
             byte [] secret = Customer.calculateSecret(salt, password);
-
             boolean admin = false;
             if (email.equals("admin@admin.dk")) {
                admin = true;
            }
             Customer customer = new Customer(email,0, admin, salt, secret);
             try {
-
-             customer = api.commitCustomer(customer);
+                customer = api.commitCustomer(customer);
+                var s = req.getSession();
+                s.setAttribute("Customer",customer);
             } catch (DBException e) {
                 e.printStackTrace();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            var s = req.getSession();
-            s.setAttribute("Customer",customer);
             resp.sendRedirect(req.getContextPath() + "/shoppingCart");
-
         }
+
+            // bestil det der er i shoppingcart....gøres kun hvis nogen er logget ind
             if (req.getParameter("target") != null)
                 if (req.getParameter("target").equals("bestil")) {
                     int ordre_id = 0;
-                    try {
-                        int customer_id = 1;//----------
-                        ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
-                        api.updateSaldo(customer_id, -api.getPrice(ordre_id));
-                    } catch (DBException e) {
-                        e.printStackTrace();
-                    }
                     var s = req.getSession();
-                    s.setAttribute("orderID", ordre_id);
-                    s.setAttribute("shoppingCart", null);
-                    resp.sendRedirect(req.getContextPath() + "/order");
+                    Customer customer = (Customer) s.getAttribute("Customer");
+                    if (customer != null) {
+                        try {
+
+                            int customer_id = customer.getCustomerId();
+                            ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
+                            api.updateSaldo(customer_id, -api.getPrice(ordre_id));
+                        } catch (DBException e) {
+                            e.printStackTrace();
+                        }
+                        s.setAttribute("orderID", ordre_id);
+                        s.setAttribute("shoppingCart", null);
+                        resp.sendRedirect(req.getContextPath() + "/order");
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+                    }
                 }
 
-
+            // delete valgte ordrlinie i shoppingcart
             if (req.getParameter("delete") != null) {
                 int lineToDelete = Integer.parseInt(req.getParameter("delete"));
                 getShoppingCart(req).remove(lineToDelete);

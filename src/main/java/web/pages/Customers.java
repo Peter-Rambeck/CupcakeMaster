@@ -19,20 +19,25 @@ public class Customers extends BaseServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {
          req.setAttribute("customers", api.findAll());
-
-        render("Cupcake", "/WEB-INF/pages/customers.jsp", req, resp );
+        var s = req.getSession();
+        Customer customer= (Customer) s.getAttribute("Customer");
+        if((customer!=null)&&(customer.isAdmin())){
+             render("Cupcake", "/WEB-INF/pages/customers.jsp", req, resp );}
+        else {
+            render("Cupcake", "/WEB-INF/pages/index.jsp", req, resp );}
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int paid = Integer.parseInt(req.getParameter("value"));
-        int custuomerId = Integer.parseInt(req.getParameter("name"));
-
-        System.out.println(paid);
-        System.out.println(custuomerId);
+        try {
+            int paid = Integer.parseInt(req.getParameter("paid"));
+            int custuomerId = Integer.parseInt(req.getParameter("customer_id"));
+            api.updateSaldo(custuomerId, paid);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
 
         resp.sendRedirect(req.getContextPath() + "/Customers");
-
 
     }
 }

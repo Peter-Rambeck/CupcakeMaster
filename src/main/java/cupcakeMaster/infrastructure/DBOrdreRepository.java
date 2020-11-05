@@ -62,12 +62,6 @@ public class DBOrdreRepository implements OrdreRepository {
         return null;
     }
 
-
-
-
-
-
-
     @Override
     public int commit(Ordre ordre, int ordre_id) throws DBException {
         return 0;
@@ -87,7 +81,4 @@ public class DBOrdreRepository implements OrdreRepository {
             throw new NoOrdreExist();
         }
     }
-
-
-
 }

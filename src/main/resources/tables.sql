@@ -16,7 +16,7 @@ PRIMARY KEY ( bottom_id )
 
 CREATE TABLE customer (
 customer_id INT NOT NULL AUTO_INCREMENT,
-email VARCHAR(50),
+email VARCHAR(50)  UNIQUE,
 role VARCHAR(10),
 saldo INT,
 salt BINARY(16),

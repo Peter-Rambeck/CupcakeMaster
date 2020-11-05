@@ -55,10 +55,11 @@
 </div>
 <hr>
 </div>
-<div class="row" style="align-content: center">
-    <a class="btn btn-primary" href="shoppingCart" role="button">Til shoppingcart</a>
-    <br>
-    <a class="btn btn-primary" role="button">Afslut</a>
-</div>
+<form method="post" >
+    <div class="text-right">
+        <input type="hidden" name="afslut" >
+        <button type="submit" class="btn btn-primary" >Afslut</button
+    </div>
+</form>
 
 

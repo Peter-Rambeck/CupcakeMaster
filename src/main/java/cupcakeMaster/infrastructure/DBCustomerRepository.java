@@ -92,8 +92,6 @@ public class DBCustomerRepository implements CustomerRepository {
                 byte[] secret=rs.getBytes("secret");
                 byte[] salt=rs.getBytes("salt");
                 Customer customer=new Customer(customer_id,email,saldo,role,salt,secret);
-
-
                 return customer;
             }
         } catch ( SQLException ex) {
@@ -126,11 +124,10 @@ public class DBCustomerRepository implements CustomerRepository {
          catch ( SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-
         return null;
-
     }
 
+    //finder customer i DB og lægger amount til hans saldo
     @Override
     public void updateSaldo(int customer_id, int amount) throws CustomerNotFoundException, DBException {
        try {
@@ -140,12 +137,9 @@ public class DBCustomerRepository implements CustomerRepository {
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,customer.getSaldo()+amount);
             ps.setInt(2,customer_id);
-
             ps.executeUpdate();
-
         } catch (SQLException ex) {
             throw new CustomerNotFoundException();
         }
-
     }
 }
