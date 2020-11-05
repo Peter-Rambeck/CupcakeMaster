@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/shoppingCart")
+@WebServlet({"/shoppingCart",""})
 public class ShoppingCart extends BaseServlet {
 
     public static List<OrdreLinie> getShoppingCart(HttpServletRequest req) {

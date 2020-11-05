@@ -28,14 +28,17 @@ public class Admin extends BaseServlet {
             if(s.getAttribute("orderToShow")==null)
             s.setAttribute("orderToShow",0);
 
+            //fyld et hashmap med alle åbne ordrers ordrelinjer key orderid
             HashMap<Integer, List<OrdreLinie>> openordersandlines=null;
             try {
               openordersandlines= api.findOpenOrdersAndOrdreLines();
             } catch (NoOrdreExist noOrdreExist) {
                 noOrdreExist.printStackTrace();
             }
+            // lav liste med åbne ordrer og sæt den i req
             List<Ordre> orders=api.findOpenOrders();
             req.setAttribute("Orders",orders);
+
             List<LocalDate> pickupdates=new ArrayList<>();
             List<String>emails=new ArrayList<>();
             List<Integer>quantitys=new ArrayList<>();

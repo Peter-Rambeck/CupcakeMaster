@@ -18,7 +18,6 @@
 <form method="post">
     <input type="hidden" name="target" value="shoppingCart">
     <div class="row">
-
         <div class="col-md-4">
             <!-- Dropdown numbers -->
             <div class="form-group ">
