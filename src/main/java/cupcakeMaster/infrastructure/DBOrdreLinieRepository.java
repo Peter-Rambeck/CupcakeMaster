@@ -1,7 +1,6 @@
 package cupcakeMaster.infrastructure;
 
 import cupcakeMaster.domain.order.*;
-import cupcakeMaster.domain.shoppingList.ShoppingList;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -9,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBOrdreLinieRepository implements OrdreLinieRepository {
-
-
     private final Database db;
-
     public DBOrdreLinieRepository(Database db) {
         this.db = db;
     }
@@ -39,17 +35,18 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             ArrayList<OrdreLinie> ordreLinier=new ArrayList<>();
             try {
                 Connection con = db.connect();
+                //find alle ordreliner med rette order_id
                 String SQL = "SELECT * FROM ordrelinie WHERE ordre_id=(?)";
                 PreparedStatement ps = con.prepareStatement(SQL);
                 ps.setInt(1,ordre_ID);
                 ResultSet rs = ps.executeQuery();
+                //for alle fundene linier lav OrdreLinie og tilføj til liste
                 while(rs.next()) {
                  int ordreLinie_ID=rs.getInt("ordrelinie_id");
                  int quantity=rs.getInt("quantity");
                  int sum=rs.getInt("sum");
                  int topping_ID=rs.getInt("topping_id");
                  Top top=tops.find(topping_ID);
-
                  int bottom_ID=rs.getInt("bottom_id");
                  Bottom bottom=bottoms.find(bottom_ID);
                  OrdreLinie ordrelinie=new OrdreLinie(quantity,sum,top,bottom);
@@ -61,9 +58,9 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             return ordreLinier;
     }
 
+    // commit ordrelinie og returner det tildelte id
     @Override
     public int commit(OrdreLinie ordreLinie, int ordre_id) throws DBException {
-
         try {
             Connection con = db.connect();
             String SQL = "INSERT INTO ordrelinie (QUANTITY, SUM, ORDRE_ID, TOPPING_ID, BOTTOM_ID) VALUES (?,?,?,?,?)";
@@ -73,8 +70,6 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
             ps.setInt(3,ordre_id);
             ps.setInt(4,ordreLinie.getTop().getId());
             ps.setInt(5,ordreLinie.getBottom().getId());
-
-
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -84,13 +79,12 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
         } catch ( SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-
-
     }
 
     @Override
     public int commitShoppingCart(List<OrdreLinie> ordreLinier, LocalDate dato,int customer_id) throws DBException {
         int ordre_id=0;
+        //commit først en ordre og modtag ordre_id
         try {
             Connection con = db.connect();
             String SQL = "INSERT INTO ordre (date, customer_id,status) VALUES (?,?,?)";
@@ -106,12 +100,10 @@ public class DBOrdreLinieRepository implements OrdreLinieRepository {
         } catch ( SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-
+        //commit alle ordrelinier med tilhørende ordre_id
         for (OrdreLinie ordreLinie:ordreLinier ) {
             commit(ordreLinie,ordre_id);
         }
-
     return ordre_id;
     }
-
 }

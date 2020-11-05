@@ -1,11 +1,9 @@
 package web.pages;
-import cupcakeMaster.api.Cupcake;
 import cupcakeMaster.domain.order.DBException;
 import cupcakeMaster.domain.order.NoOrdreExist;
 import cupcakeMaster.domain.order.Ordre;
 import cupcakeMaster.domain.order.OrdreLinie;
 import cupcakeMaster.domain.order.customer.Customer;
-import cupcakeMaster.infrastructure.*;
 import web.BaseServlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import static web.pages.ShoppingCart.getShoppingCart;
 @WebServlet({"/order", "/order/*"})
 public class Order extends BaseServlet {
     @Override
@@ -25,8 +20,11 @@ public class Order extends BaseServlet {
         var s = req.getSession();
         Ordre order;
         List<OrdreLinie> ordreLinies;
+        int order_ID=0;
+        if(s.getAttribute("orderID")!=null)
         try {
-            int order_ID= (int) s.getAttribute("orderID");
+            order_ID= (int) s.getAttribute("orderID");
+            if(s.getAttribute("orderID")!=null){ order_ID= (int) s.getAttribute("orderID");}
             order=api.findOrdre(order_ID);
             ordreLinies=api.findOrdreLinierFromOrdreID(order_ID);
             req.setAttribute("orderID",order_ID);
@@ -63,6 +61,8 @@ public class Order extends BaseServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var s = req.getSession();
+        s.setAttribute("orderID",null);
         resp.sendRedirect(req.getContextPath() + "/shoppingCart");
 
     }

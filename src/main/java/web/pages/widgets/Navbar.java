@@ -15,26 +15,7 @@ public class Navbar {
         return "CupcakeMaster";
     }
 
-    private final List<Item> items = List.of(
-            new Item("Home", "/", false),
-            new Item("Lists", "/Lists", false),
-            new Item("Admin", "/admin", true)
-    );
 
-    public List<Item> getItems() {
-        String name = (String) request.getSession().getAttribute("Customer");
-        if (name != null && name.equals("ADMIN")) {
-            return items;
-        } else {
-            List<Item> list = new ArrayList<>();
-            for (Item x : items) {
-                if (!x.adminOnly) {
-                    list.add(x);
-                }
-            }
-            return list;
-        }
-    }
 
     public class Item {
         private final String name;

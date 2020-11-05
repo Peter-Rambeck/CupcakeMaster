@@ -1,6 +1,7 @@
 package web.pages;
 
 import cupcakeMaster.api.Cupcake;
+import cupcakeMaster.api.Utils;
 import cupcakeMaster.domain.order.*;
 import cupcakeMaster.domain.order.customer.Customer;
 import cupcakeMaster.infrastructure.*;
@@ -21,6 +22,8 @@ import java.util.List;
 public class ShoppingCart extends BaseServlet {
 
     public static List<OrdreLinie> getShoppingCart(HttpServletRequest req) {
+        //hent og returner valgte ordreliiner, hvis ingen, returner tom ny liste,
+        //og udregn samlet pris for linjerne og egm dem på sessionen
         var s = req.getSession();
         List<OrdreLinie> shoppingCart = (List<OrdreLinie>) s.getAttribute("shoppingCart");
         if (shoppingCart == null) {
@@ -30,7 +33,6 @@ public class ShoppingCart extends BaseServlet {
         int sum=0;
         for (OrdreLinie ordrelinie:shoppingCart) {
             sum=sum+(ordrelinie.getOrdrelinieSum());
-
         }
         s.setAttribute("shoppingcartSum",sum);
         return shoppingCart;
@@ -99,6 +101,7 @@ public class ShoppingCart extends BaseServlet {
         // hvs email=2admin@admin.dk" sættes role til admin
         if (req.getParameter("email") != null) {
             String email = req.getParameter("email");
+            email= Utils.encodeHtml(email);
             String password = req.getParameter("password");
             byte [] salt= Customer.generateSalt();
             byte [] secret = Customer.calculateSecret(salt, password);

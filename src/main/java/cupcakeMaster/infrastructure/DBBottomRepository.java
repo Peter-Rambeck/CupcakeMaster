@@ -24,7 +24,6 @@ public class DBBottomRepository implements BottomRepository{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                
                 if (bottomList == null) {
                     bottomList = new ArrayList<>();
                 }
@@ -49,8 +48,6 @@ public class DBBottomRepository implements BottomRepository{
             ps.setInt(1,parseInt);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-
-
                 int bottom_id = rs.getInt("bottom_id");
                 String name = rs.getString("name");
                 int price = rs.getInt("price");
