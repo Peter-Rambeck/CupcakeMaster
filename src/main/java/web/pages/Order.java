@@ -25,8 +25,8 @@ public class Order extends BaseServlet {
         var s = req.getSession();
         Ordre order;
         List<OrdreLinie> ordreLinies;
-        int order_ID= (int) s.getAttribute("orderID");
         try {
+            int order_ID= (int) s.getAttribute("orderID");
             order=api.findOrdre(order_ID);
             ordreLinies=api.findOrdreLinierFromOrdreID(order_ID);
             req.setAttribute("orderID",order_ID);
@@ -45,9 +45,17 @@ public class Order extends BaseServlet {
 
 
         } catch (DBException e) {
-            e.printStackTrace();
+
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+//            e.printStackTrace();
         } catch (NoOrdreExist noOrdreExist) {
-            noOrdreExist.printStackTrace();
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
+           // noOrdreExist.printStackTrace();
+        }catch (NumberFormatException e) {
+            resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
+            // noOrdreExist.printStackTrace();
         }
 
 
