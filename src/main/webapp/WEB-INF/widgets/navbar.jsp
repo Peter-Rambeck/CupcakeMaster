@@ -11,18 +11,27 @@
 
 
 
-        <div>
-            ${sessionScope.Customer.email}
-        </div>
+
+
+
     <c:if test="${sessionScope.Customer!=null}">
     <ul class="navbar-nav ml-auto">
-    <form method="post" action="<c:url value="/shoppingCart"/>" style="float: right">
-        <input type="hidden" name="logout" >
-        <button type="submit" class="btn btn-primary">Log Ud</button>
-    </form>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="dropdownlogud" data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">${sessionScope.Customer.email}</a>
+            <div class="dropdown-menu dropdown-menu-right">
+
+                <form class="px-3 py-3" method="post" action="<c:url value="/shoppingCart"/>">
+
+                    <input type="hidden" name="logout" >
+                    <button type="submit" class="btn btn-primary">Log out</button>
+                </form>
+            </div>
+
+        </div>
     </ul>
     </c:if>
-
 
     <c:if test="${sessionScope.Customer==null}">
     <ul class="navbar-nav ml-auto">
