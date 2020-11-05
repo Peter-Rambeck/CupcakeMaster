@@ -55,11 +55,7 @@ public class Order extends BaseServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
-        List<OrdreLinie> orders = ShoppingCart.getShoppingCart(req);
-        /// save to database
-        int orderId = 0; //...
-        // get order id
-         */
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+
     }
 }

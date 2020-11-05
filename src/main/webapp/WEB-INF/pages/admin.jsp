@@ -117,7 +117,7 @@
             </div>
             </div>
         </c:forEach>
-        <br>
+        <hr>
     </c:if>
 </c:forEach>
 
@@ -126,8 +126,3 @@
 
 
 </div>
-<hr>
-
-
-<hr>
-

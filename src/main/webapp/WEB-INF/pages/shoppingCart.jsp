@@ -13,10 +13,7 @@
         Vælg og bestil her</h3>
 </div>
 
-<%
-    //request.setAttribute("bottoms", );
-    // request.setAttribute("toppings", LogicFacade.getAllToppings());
-%>
+
 
 <form method="post">
     <input type="hidden" name="target" value="shoppingCart">
@@ -39,7 +36,7 @@
         <div class="col-md-4">
             <!-- Dropdown bottoms -->
             <div class="form-group">
-                <label for="selectBottom">Select Cupcake bottom</label>
+                <label for="selectBottom">Vælg bund</label>
                 <select class="form-control" name="bottom" id="selectBottom">
                     <c:forEach  items="${requestScope.bottom}" var="bot">
                         <option value="${bot.id}">
@@ -55,7 +52,7 @@
 
             <!-- Dropdown toppings -->
             <div class="form-group">
-                <label for="selectTopping">Select Cupcake topping</label>
+                <label for="selectTopping">Vælg topping</label>
                 <select class="form-control" name="topping" id="selectTopping">
                     <c:forEach  items="${requestScope.topping}" var="top">
                         <option value="${top.id}">
@@ -71,7 +68,7 @@
     </div>
 
     <div class="text-right">
-        <button type="submit" class="btn btn-primary" name="order">Add to order</button>
+        <button type="submit" class="btn btn-primary" name="order">Tilføj</button>
     </div>
 
 </form>
@@ -89,22 +86,22 @@
 
 <div class="row">
     <div class="col-md-2">
-        Cupcakes
+        Antal cupcakes
     </div>
     <div class="col-md-2">
-        Bottom
+        Bund
     </div>
     <div class="col-md-2">
         Topping
     </div>
     <div class="col-md-2">
-        Price
+        Pris
     </div>
    </div>
 <hr>
 
 <c:forEach items="${sessionScope.shoppingCart}" var="ordreLinje" varStatus="loop">
-    <div class="row">
+         <div class="row">
         <div class="col-md-2">
             ${ordreLinje.quantity}
         </div>
@@ -119,8 +116,10 @@
         </div>
         <div class="col-md-4">
             <form method="post" >
+                <div class="text-right">
                 <input type="hidden" name="delete" value="${loop.index}">
-                <button type="submit" class="btn btn-primary" >Delete</button>
+                <button type="submit" class="btn btn-primary" >Slet</button
+                </div>
             </form>
         </div>
         </div>
@@ -128,14 +127,18 @@
         </div>
     </div>
 </c:forEach>
+
 <hr>
-
-
-<form method="post">
-    <input type="hidden" name="target" value="bestil">
-</div>
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary">Buy order</button>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Samlet pris ${sessionScope.shoppingcartSum} Kr</h3>
     </div>
-</form>
-
+    <div class="col-md-6">
+        <form method="post">
+        <input type="hidden" name="target" value="bestil">
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Bestil ordre</button>
+        </div>
+        </form>
+    </div>
+</div>

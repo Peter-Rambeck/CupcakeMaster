@@ -27,6 +27,12 @@ public class ShoppingCart extends BaseServlet {
             shoppingCart = new ArrayList<>();
             s.setAttribute("shoppingCart", shoppingCart);
         }
+        int sum=0;
+        for (OrdreLinie ordrelinie:shoppingCart) {
+            sum=sum+(ordrelinie.getOrdrelinieSum());
+
+        }
+        s.setAttribute("shoppingcartSum",sum);
         return shoppingCart;
     }
 
@@ -36,11 +42,7 @@ public class ShoppingCart extends BaseServlet {
         getShoppingCart(req);
         req.setAttribute("topping", api.allTops());
         req.setAttribute("bottom", api.allBottoms());
-        try {
-            System.out.println("size of map" + api.findOpenOrdersAndOrdreLines().size());
-        } catch (NoOrdreExist noOrdreExist) {
-            noOrdreExist.printStackTrace();
-        }
+
         render("Bestilling", "/WEB-INF/pages/shoppingCart.jsp", req, resp);
     }
 

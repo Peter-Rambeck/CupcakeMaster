@@ -6,14 +6,6 @@
     <a class="navbar-brand" href="Customers">Kunder</a>
     </c:if>
 
-
-
-
-
-
-
-
-
     <c:if test="${sessionScope.Customer!=null}">
     <ul class="navbar-nav ml-auto">
         <div class="nav-item dropdown">
